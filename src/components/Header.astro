@@ -17,9 +17,9 @@ const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/image
 <header
   id="main-header"
   data-is-home={isHomePage} 
-  class={`header-transition rounded-b-xl fixed top-0 left-0 right-0 z-50 ${headerClasses}`}
+  class={`header-transition fixed top-0 left-0 right-0 z-50 ${headerClasses}`}
 >
-  {/* ======================= 1. SEARCH OVERLAY (MOBILE) ======================= */}
+
   <div
     id="search-overlay"
     class="hidden fixed inset-0 z-[100] flex justify-center items-start pt-24 bg-gray-500/70 backdrop-blur-sm transition-opacity duration-300 opacity-0"
@@ -58,7 +58,7 @@ const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/image
             <img
               src={initialLogoSrc}
               alt="Aethersub Logo Premium"
-              class="h-10 md:h-15 w-auto"
+              class="h-10 md:h-12 w-auto"
               id="header-logo" 
             />
           </a>
@@ -188,7 +188,7 @@ bg-red-600 rounded-full"
       </h3>
       <button
         id="product-detail-close-button"
-        class="text-gray-500 hover:text-red-600 transition duration-150 p-1"
+        class="text-gray-500 hover:text-lime-600 transition duration-150 p-1"
       >
         <svg
           class="w-6 h-6"
@@ -250,7 +250,7 @@ bg-red-600 rounded-full"
         ></h4>
         <p
           id="modal-product-price"
-          class="text-3xl font-bold text-red-600 mt-1 mb-4"
+          class="text-3xl font-bold text-lime-600 mt-1 mb-4"
         ></p>
         <p class="text-sm text-gray-600">
           Jersey kualitas premium dengan garansi kustom nama dan nomor gratis. Bahan Dri-FIT teknologi terbaru.
@@ -265,7 +265,7 @@ bg-red-600 rounded-full"
             <button 
                 id="toggle-size-chart" 
                 onclick="toggleSizeChart()" 
-                class="text-sm font-medium text-red-600 hover:text-red-800 transition duration-150"
+                class="text-sm font-medium text-lime-600 hover:text-red-800 transition duration-150"
             >
                 <i class="fa-solid fa-chart-bar mr-1"></i> Lihat Size Chart
             </button>
@@ -415,11 +415,11 @@ bg-red-600 rounded-full"
 
 <div
     id="mobile-menu-sidebar"
-    class="fixed top-0 right-0 w-64 h-full bg-white z-50 transform translate-x-full transition-transform duration-300 shadow-2xl p-6" 
+    class="fixed top-4 right-0 w-64 h-full  bg-white z-50 transform rounded-2xl translate-x-full transition-transform duration-300 shadow-2xl p-6" 
 >
     <div class="flex justify-between items-center mb-8 border-b pb-4">
-        <span class="text-xl font-extrabold text-red-600">AETHER SUB</span>
-        <button onclick="closeMobileMenu()" class="text-gray-500 hover:text-red-600 p-2 rounded-full transition duration-150" aria-label="Tutup Menu">
+        <span class="text-xl font-extrabold text-lime-600">MENU</span>
+        <button onclick="closeMobileMenu()" class="text-gray-500 hover:text-lime-600 p-2 rounded-full transition duration-150" aria-label="Tutup Menu">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>

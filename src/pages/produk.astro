@@ -1,25 +1,10 @@
 ---
 // src/pages/produk.astro
+// @ts-nocheck
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// --- 1. DEFINISI TIPE DATA (JSDOC) ---
-/**
- * @typedef {object} Product
- * @property {number} id
- * @property {string} name
- * @property {number} price
- * @property {number | null} oldPrice
- * @property {boolean} isNew
- * @property {boolean} isSale
- * @property {number} rating
- * @property {string} category
- * @property {string} imageSrc
- * @property {Array<{thumb: string, full: string}>} images
- */
-
-
-const title = "Katalog Produk Jersey Premium | JersyKita";
+const title = "Katalog Produk | AetherSub";
 
 // --- 2. FUNGSI UTILITY & FORMAT RUPIAH ---
 /**
@@ -70,7 +55,7 @@ const products = [
     isNew: false,
     isSale: true,
     rating: 4.7,
-    category: "Timnas",
+    category: "timnas-2024",
     imageSrc: "https://placehold.co/600x600/CCCCCC/000000?text=P102%20AWAY",
     images: [{ thumb: "https://placehold.co/100x100/EEEEEE/333333?text=T102", full: "https://placehold.co/600x600/CCCCCC/000000?text=P102%20FULL" }],
   },
@@ -139,13 +124,10 @@ const filteredProducts = products.filter(product => {
             
             <header class="text-center mb-8">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
-                    Katalog Jersey Premium
+                    Katalog Jersey <span class="text-lime-600 font-judul2">Aethersub</span>
                 </h1>
-                <p class="text-lg text-gray-600">
-                    Temukan jersey timnas, retro, dan training dengan custom gratis.
-                </p>
             </header>
-            <div class="px-4 md:px-8 lg:px-40 pt-20 pb-4 md:hidden">
+            <div class="px-4 md:px-8 lg:px-40 pt-10 pb-4 md:hidden">
     <button
         onclick="openCategorySidebar()"
         class="w-full py-3 bg-red-600 text-white font-bold rounded-lg shadow-md hover:bg-red-700 transition duration-150 flex items-center justify-center text-lg"
@@ -197,62 +179,84 @@ const filteredProducts = products.filter(product => {
                         </div>
                     )}
                     
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-5">
+
                         
                       
                         {filteredProducts.map((product) => (
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-xl transition duration-300">
-                                <div class="relative overflow-hidden h-48 sm:h-64">
-                                    <img
-                                        class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-                                        src={product.imageSrc}
-                                        alt={product.name}
-                                        loading="lazy"
-                                    />
-                                   
-                                    <div class="absolute top-3 left-3 flex space-x-2">
-                                        {product.isNew && (
-                                            <span class="bg-lime-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">BARU</span>
-                                        )}
-                                        {product.isSale && (
-                                            <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">DISKON</span>
-                                        )}
-                                    </div>
-                                </div>
-                                <div class="p-4 flex flex-col grow">
-                                    <h2 class="text-lg font-semibold text-gray-900 line-clamp-2 min-h-12">
-                                        {product.name}
-                                    </h2>
-                                    
-                                    <div class="mt-2 flex items-center space-x-2">
-                                        <span class="text-xl font-extrabold text-red-600">
-                                            {formatRupiah(product.price)}
-                                        </span>
-                                        {product.oldPrice && (
-                                            <span class="text-sm text-gray-400 line-through">
-                                                {formatRupiah(product.oldPrice)}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    {/* Rating */}
-                                    <div class="flex items-center text-yellow-500 text-sm mt-1 mb-3">
-                                        <i class="fa-solid fa-star"></i>
-                                        <span class="ml-1 text-gray-600 text-xs font-medium">({product.rating})</span>
-                                    </div>
+                            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 
+            overflow-hidden flex flex-col border border-gray-100">
 
-                                    {/* Tombol Beli */}
-                                    <button
-                                        class="open-product-modal w-full mt-auto py-2 bg-lime-600 text-white font-semibold rounded-lg hover:bg-lime-700 transition duration-200 text-sm"
-                                        data-product-id={product.id}
-                                        data-product-name={product.name}
-                                        data-product-price={product.price}
-                                        data-product-images={JSON.stringify(product.images)}
-                                    >
-                                        Beli Sekarang
-                                    </button>
-                                </div>
-                            </div>
+    <!-- Gambar -->
+    <div class="relative h-48 sm:h-64 overflow-hidden">
+        <img 
+            src={product.imageSrc}
+            alt={product.name}
+            loading="lazy"
+            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+        />
+
+        <!-- Badge -->
+        <div class="absolute top-3 left-3 flex gap-2">
+            {product.isNew && (
+                <span class="bg-lime-600/90 backdrop-blur px-3 py-[2px] text-xs
+                              font-semibold text-white rounded-full shadow">
+                    BARU
+                </span>
+            )}
+            {product.isSale && (
+                <span class="bg-red-600/90 backdrop-blur px-3 py-[2px] text-xs 
+                              font-semibold text-white rounded-full shadow">
+                    DISKON
+                </span>
+            )}
+        </div>
+    </div>
+
+    <!-- Konten -->
+    <div class="p-4 flex flex-col flex-1">
+
+        <!-- Nama -->
+        <h2 class="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2 mb-1">
+            {product.name}
+        </h2>
+
+        <!-- Rating -->
+        <div class="flex items-center text-yellow-500 text-xs mt-[2px] mb-3">
+            <i class="fa-solid fa-star text-[12px]"></i>
+            <span class="ml-1 text-gray-600">{product.rating}</span>
+        </div>
+
+        <!-- Harga -->
+        <div class="mt-auto mb-3">
+            <span class="text-xl font-extrabold text-red-600">
+                {formatRupiah(product.price)}
+            </span>
+
+            {product.oldPrice && (
+                <span class="text-sm text-gray-400 line-through ml-2">
+                    {formatRupiah(product.oldPrice)}
+                </span>
+            )}
+        </div>
+
+        <!-- Tombol -->
+        <button
+            class="open-product-modal w-full py-2.5 
+                   bg-lime-600 text-white font-semibold rounded-full 
+                   hover:bg-lime-700 transition duration-200 text-sm
+                   shadow-sm hover:shadow-md"
+            
+            data-product-id={product.id}
+            data-product-name={product.name}
+            data-product-price={product.price}
+            data-product-images={JSON.stringify(product.images)}
+        >
+            Beli Sekarang
+        </button>
+    </div>
+</div>
+
                         ))}
 
                     </div>
