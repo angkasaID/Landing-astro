@@ -1,485 +1,503 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 // --- DATA PRODUK DISINKRONKAN DENGAN SKEMA produk.astro ---
 const products = [
-
-    {
+  {
     id: 101,
-    name: "Atasan Pola & Kerah Standar",
+    name: 'Atasan Pola & Kerah Standar',
     price: 110000,
     oldPrice: 150000,
     isNew: true,
     isSale: true,
     rating: 4.9,
-    category: "Jersey", 
-    imageSrc: "https://placehold.co/600x600/CCCCCC/000000?text=P101%20HOME", 
+    category: 'Jersey',
+    imageSrc: 'https://placehold.co/600x600/CCCCCC/000000?text=P101%20HOME',
     images: [
-        { thumb: "https://placehold.co/100x100/EEEEEE/333333?text=T101-1", full: "https://placehold.co/600x600/CCCCCC/000000?text=P101%20FULL%201" },
-        { thumb: "https://placehold.co/100x100/D4A4B4/333333?text=T101-2", full: "https://placehold.co/600x600/D4A4B4/000000?text=P101%20FULL%202" }
+      {
+        thumb: 'https://placehold.co/100x100/EEEEEE/333333?text=T101-1',
+        full: 'https://placehold.co/600x600/CCCCCC/000000?text=P101%20FULL%201',
+      },
+      {
+        thumb: 'https://placehold.co/100x100/D4A4B4/333333?text=T101-2',
+        full: 'https://placehold.co/600x600/D4A4B4/000000?text=P101%20FULL%202',
+      },
     ],
   },
 
   {
     id: 102,
-    name: "Setelan Lengkap standar",
+    name: 'Setelan Lengkap standar',
     price: 155000,
     oldPrice: 199000,
     isNew: false,
     isSale: true,
     rating: 4.7,
-    category: "Jersey",
-    imageSrc: "/asset/images/port2.png",
-    images: [{ thumb: "https://placehold.co/100x100/EEEEEE/333333?text=T102", full: "https://placehold.co/600x600/CCCCCC/000000?text=P102%20FULL" }],
+    category: 'Jersey',
+    imageSrc: '/asset/images/port2.png',
+    images: [
+      {
+        thumb: 'https://placehold.co/100x100/EEEEEE/333333?text=T102',
+        full: 'https://placehold.co/600x600/CCCCCC/000000?text=P102%20FULL',
+      },
+    ],
   },
   {
     id: 105,
-    name: "Vintage polo",
+    name: 'Vintage polo',
     price: 120000,
     oldPrice: 180000,
     isNew: false,
     isSale: false,
     rating: 4.8,
-    category: "Vintage",
-    imageSrc: "https://placehold.co/600x600/CCCCCC/000000?text=P105%20RETRO",
-    images: [{ thumb: "https://placehold.co/100x100/EEEEEE/333333?text=T105", full: "https://placehold.co/600x600/CCCCCC/000000?text=P105%20FULL" }],
+    category: 'Vintage',
+    imageSrc: 'https://placehold.co/600x600/CCCCCC/000000?text=P105%20RETRO',
+    images: [
+      {
+        thumb: 'https://placehold.co/100x100/EEEEEE/333333?text=T105',
+        full: 'https://placehold.co/600x600/CCCCCC/000000?text=P105%20FULL',
+      },
+    ],
   },
   {
     id: 104,
-    name: "Jersey Polo standar Wangky",
+    name: 'Jersey Polo standar Wangky',
     price: 120000,
     oldPrice: null,
     isNew: false,
     isSale: false,
     rating: 4.5,
-    category: "Polo",
-    imageSrc: "/asset/images/image-1.png",
-    images: [{ thumb: "https://placehold.co/100x100/EEEEEE/333333?text=T104", full: "https://placehold.co/600x600/CCCCCC/000000?text=P104%20FULL" }],
+    category: 'Polo',
+    imageSrc: '/asset/images/image-1.png',
+    images: [
+      {
+        thumb: 'https://placehold.co/100x100/EEEEEE/333333?text=T104',
+        full: 'https://placehold.co/600x600/CCCCCC/000000?text=P104%20FULL',
+      },
+    ],
   },
 ];
-function formatRupiah(number: number) { 
-    if (typeof number !== 'number') return 'Rp 0';
-    return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+function formatRupiah(number: number) {
+  if (typeof number !== 'number') return 'Rp 0';
+  return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
-// Peningkatan: Mengganti warna hover tombol footer dari merah ke lime
-const footerButtonHoverClass = "hover:bg-lime-700"; 
-
-// Peningkatan: Mengganti h2 pada section Keunggulan dan Testimonial menjadi h3 untuk hierarki yang benar
-// Namun, karena ini adalah section utama di halaman, kita biarkan h2 untuk SEO, dan memperbaiki h2/h3 lainnya jika ada.
-// Dalam konteks ini, saya fokus pada perbaikan card produk dan konsistensi warna.
-
+const footerButtonHoverClass = 'hover:bg-lime-700';
 ---
 
 <BaseLayout title="AetherSub | Vendor Jersey Terpercaya">
-    <section
-      id="hero-section"
-      class="relative overflow-hidden min-h-screen pb-4"
+  <section id="hero-section" class="relative min-h-screen overflow-hidden pb-4">
+    <div id="parallax-image" class="parallax-bg z-0"></div>
+
+    <div class="absolute inset-0 z-10 bg-gray-900/20"></div>
+
+    <div
+      class="relative z-20 flex h-full w-full flex-col justify-center text-left"
+      style="min-height: 100vh"
     >
-      <div id="parallax-image" class="parallax-bg z-0"></div>
+      <div class="p-4 pt-24 pb-4 sm:px-8 lg:pt-32 lg:pr-16 lg:pl-32">
+        <h1
+          class="font-judul mb-2 max-w-4xl text-5xl leading-tight font-semibold text-white text-shadow-sm sm:text-6xl lg:text-8xl"
+        >
+          We Are <br />
+          <span class="font-judul2 block text-lime-500">Aethersub</span>
 
-      <div class="absolute inset-0 bg-gray-900/20 z-10"></div>
+          <!-- Kredit kecil -->
+          <span class="mt-0 block pr-1 text-left text-sm font-light text-white/70 italic">
+            By. Angkasa Project
+          </span>
+        </h1>
+      </div>
+    </div>
 
-      <div
-        class="relative z-20 flex flex-col justify-center w-full h-full text-left"
-        style="min-height: 100vh"
+    <div class="absolute right-0 bottom-0 left-0 z-20 p-8 text-center">
+      <a
+        href="#full-screen-carousel"
+        class="animate-pulse text-sm text-white opacity-70 transition duration-300 hover:opacity-100"
       >
-        <div class="p-4 sm:px-8 
-lg:pl-32 lg:pr-16 pt-24 pb-4 lg:pt-32">
-          <h1
-            class="text-5xl sm:text-6xl lg:text-8xl text-shadow-sm font-semibold font-judul text-white mb-4 max-w-4xl"
-          >
-            We Are <br /> <span class="text-lime-500 font-judul2">Aethersub</span>
-          </h1>
-        </div>
-      </div>
-
-      <div class="absolute bottom-0 left-0 right-0 z-20 p-8 text-center">
- 
-        <a
-          href="#full-screen-carousel"
-          class="text-sm text-white opacity-70 hover:opacity-100 transition duration-300 animate-pulse"
-        >
-          Scroll untuk lebih mengenal kami 👇
-        </a>
-      </div>
-    </section>
-
-<section
-      id="full-screen-carousel"
-      class="relative w-full aspect-video md:h-[56.25vw] md:max-h-screen bg-white overflow-hidden"
+        Scroll untuk lebih mengenal kami 👇
+      </a>
+    </div>
+  </section>
+  <div class="absolute right-0 bottom-12 left-0 z-30 flex justify-center">
+    <div
+      data-aos="zoom-in"
+      data-aos-delay="150"
+      class="w-[90%] max-w-lg rounded-3xl border border-white/20 bg-white/10 px-8 py-5 shadow-2xl backdrop-blur-xl"
     >
-    
+      <p class="mb-2 text-center text-lg font-semibold text-white">
+        ✨ Baru! Koleksi Desain & Asset Kreatif Aethersub
+      </p>
+
+      <p class="mb-4 text-center text-sm text-white/80">
+        Dapatkan inspirasi desain terbaru langsung dari studio kami.
+      </p>
+
+      <a
+        href="https://blog.aethersub.store"
+        class="block w-full rounded-xl bg-lime-500 py-3 text-center font-bold text-gray-900 transition duration-300 hover:scale-105 hover:bg-lime-400"
+      >
+        Lihat Koleksi
+      </a>
+    </div>
+  </div>
+
+  <section
+    id="full-screen-carousel"
+    class="relative aspect-video w-full overflow-hidden bg-white md:h-[56.25vw] md:max-h-screen"
+  >
+    <div
+      id="gallery-carousel"
+      class="mt-1 flex h-full w-full snap-x snap-mandatory snap-always overflow-x-auto"
+      style="scroll-behavior: smooth;"
+    >
       <div
-        id="gallery-carousel"
-        class="flex w-full h-full overflow-x-auto snap-x snap-mandatory snap-always mt-1"
-        style="scroll-behavior: smooth;"
->
+        class="carousel-item justify-cente relative flex h-full w-screen flex-shrink-0 items-center"
+        data-slide-index="1"
+      >
         <div
-          class="carousel-item relative flex items-center justify-cente w-screen h-full flex-shrink-0"
-          data-slide-index="1"
+          class="bg-center-top absolute inset-0 bg-cover"
+          style="background-image: url('/asset/images/slide1.png')"
         >
-          <div
-            class="absolute inset-0 bg-cover bg-center-top"
-            style="background-image: url('/asset/images/slide1.png')"
-          ></div>
-        </div>
-
- 
-        <div
-          class="carousel-item relative flex items-center justify-center  w-screen h-full flex-shrink-0"
-          data-slide-index="2"
-        >
-          <div
-            class="absolute inset-0 bg-cover bg-center-top "
-            style="background-image: url('/asset/images/slide2.png')"
-          ></div>
-        
-</div>
-
-        <div
-          class="carousel-item relative flex items-center justify-center w-screen h-full flex-shrink-0"
-          data-slide-index="3"
-        >
-          <div
-            class="absolute inset-0 bg-cover bg-center-top "
-            style="background-image: url('/asset/images/slide3.png')"
-          ></div>
-        
-</div>
-        
-        <div
-          class="carousel-item relative flex items-center justify-cente w-screen h-full flex-shrink-0"
-          data-slide-index="1-copy"
-        >
-          <div
-            class="absolute inset-0 bg-cover bg-center-top"
-            style="background-image: url('/asset/images/slide1.png')"
-          ></div>
- 
         </div>
       </div>
-    </section>
 
-    <section class="w-full bg-gray-50 px-2 sm:px-4 md:px-4 py-2 pb-4">
-      <div class="flex flex-row w-full gap-2 sm:gap-4 md:gap-6 md:h-screen">
+      <div
+        class="carousel-item relative flex h-full w-screen flex-shrink-0 items-center justify-center"
+        data-slide-index="2"
+      >
         <div
-          class="relative w-1/2 bg-gray-800 overflow-hidden aspect-square md:aspect-auto md:h-full"
+          class="bg-center-top absolute inset-0 bg-cover"
+          style="background-image: url('/asset/images/slide2.png')"
         >
-          <div
-            class="absolute inset-0 bg-cover bg-center opacity-90 
-transition duration-500 hover:opacity-100"
-            style="background-image: url('/asset/images/image-1.png')"
-          ></div>
-          <div
-            class="absolute inset-0 z-10 w-full h-full flex items-center justify-center p-4 sm:p-6 bg-gray-900/50"
-          >
-            <h2
-              class="font-judul2 text-xl sm:text-3xl md:text-5xl text-white text-center"
-  
-            >
-              KUALITAS TERBAIK<br />
-            </h2>
-          </div>
-        </div>
-        <div
-          class="relative w-1/2 bg-gray-700 overflow-hidden aspect-square md:aspect-auto md:h-full"
-        >
-          <div
-  
-            class="absolute inset-0 bg-cover bg-center opacity-90 transition duration-500 hover:opacity-100"
-            style="background-image: url('/asset/images/image-2.png')"
-          ></div>
-          <div
-            class="absolute inset-0 z-10 w-full h-full flex items-center justify-center p-4 sm:p-6 bg-gray-900/50"
-          >
-            <h3
-      
-              class="font-judul2 text-xl sm:text-3xl md:text-5xl font-semibold text-white text-center leading-snug"
-            >
-              BEBAS CUSTOM
-            </h3>
-          </div>
         </div>
       </div>
-    </section>
-  
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="produk">
-     
-      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
-        Jersey Pilihan Kami
-      </h2>
-      
-<div class="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-4 md:gap-8">
-    {products.map((product) => (
-<div
-    class="bg-white rounded-xl shadow-2xl overflow-hidden transition duration-500 transform hover:scale-[1.03] hover:shadow-lime-400/50 group"
->
-    <button 
-        class="open-product-modal w-full h-56 bg-gray-100 flex items-center justify-center relative overflow-hidden focus:outline-none"
-        data-product-id={product.id}
-        data-product-name={product.name}
-        data-product-price={product.price}
-        data-product-images={JSON.stringify(product.images)}
-    >
-        <div class="absolute inset-0 transition duration-500 group-hover:scale-110"
-             style={`
+
+      <div
+        class="carousel-item relative flex h-full w-screen flex-shrink-0 items-center justify-center"
+        data-slide-index="3"
+      >
+        <div
+          class="bg-center-top absolute inset-0 bg-cover"
+          style="background-image: url('/asset/images/slide3.png')"
+        >
+        </div>
+      </div>
+
+      <div
+        class="carousel-item justify-cente relative flex h-full w-screen flex-shrink-0 items-center"
+        data-slide-index="1-copy"
+      >
+        <div
+          class="bg-center-top absolute inset-0 bg-cover"
+          style="background-image: url('/asset/images/slide1.png')"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-gray-50 px-2 py-2 pb-4 sm:px-4 md:px-4">
+    <div class="flex w-full flex-row gap-2 sm:gap-4 md:h-screen md:gap-6">
+      <div
+        data-aos="fade-right"
+        class="relative aspect-square w-1/2 overflow-hidden bg-gray-800 md:aspect-auto md:h-full"
+      >
+        <div
+          class="absolute inset-0 bg-cover bg-center opacity-90 transition duration-500 hover:opacity-100"
+          style="background-image: url('/asset/images/image-1.png')"
+        >
+        </div>
+        <div
+          class="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-gray-900/50 p-4 sm:p-6"
+        >
+          <h2 class="font-judul2 text-center text-xl text-white sm:text-3xl md:text-5xl">
+            KUALITAS TERBAIK<br />
+          </h2>
+        </div>
+      </div>
+      <div
+        data-aos="fade-left"
+        class="relative aspect-square w-1/2 overflow-hidden bg-gray-700 md:aspect-auto md:h-full"
+      >
+        <div
+          class="absolute inset-0 bg-cover bg-center opacity-90 transition duration-500 hover:opacity-100"
+          style="background-image: url('/asset/images/image-2.png')"
+        >
+        </div>
+        <div
+          class="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-gray-900/50 p-4 sm:p-6"
+        >
+          <h3
+            class="font-judul2 text-center text-xl leading-snug font-semibold text-white sm:text-3xl md:text-5xl"
+          >
+            BEBAS CUSTOM
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8" id="produk">
+    <h2 class="mb-8 text-center text-3xl font-bold text-gray-900" data-aos="fade-up">
+      Jersey Pilihan Kami
+    </h2>
+
+    <div class="grid grid-cols-2 gap-x-2 gap-y-4 md:grid-cols-4 md:gap-8">
+      {
+        products.map((product) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay="100"
+            class="group transform overflow-hidden rounded-xl bg-white shadow-2xl transition duration-500 hover:scale-[1.03] hover:shadow-lime-400/50"
+          >
+            <button
+              class="open-product-modal relative flex h-56 w-full items-center justify-center overflow-hidden bg-gray-100 focus:outline-none"
+              data-product-id={product.id}
+              data-product-name={product.name}
+              data-product-price={product.price}
+              data-product-images={JSON.stringify(product.images)}
+            >
+              <div
+                class="absolute inset-0 transition duration-500 group-hover:scale-110"
+                style={`
                  background-image: url('${product.imageSrc}');
                  background-size: cover;
                  background-position: center;
              `}
-        ></div>
-        
-        <div class="absolute inset-0 bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-        
-        {/* Menggunakan ternary operator jika Anda ingin badge ini hanya tampil jika product.isNew true */}
-        <span class="absolute top-3 left-3 bg-lime-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg opacity-90 z-10">
-            BARU
-        </span>
-    </button>
+              />
 
-    <div class="p-5">
-        <h3 class="text-base md:text-xl font-semibold text-gray-900 truncate">
-            {product.name}
-        </h3>
-        
-        <p class="text-xs text-gray-500 mt-1 mb-2 font-medium tracking-wide">{product.category}</p>
+              <div class="bg-opacity-10 absolute inset-0 bg-black opacity-0 transition duration-300 group-hover:opacity-100" />
 
-        <span class="text-lg md:text-2xl font-extrabold text-lime-600 block mb-4">
-            {formatRupiah(product.price)}
-        </span>
-        
-        <div class="flex flex-col md:flex-row justify-between items-center md:mt-2">
-            <button
-                class="open-product-modal w-full text-sm bg-gray-900 hover:bg-lime-600 active:bg-lime-700 text-white font-medium py-2 px-4 rounded-md transition duration-200 ease-in-out shadow-lg focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-opacity-50"
-                data-product-id={product.id}
-                data-product-name={product.name}
-                data-product-price={product.price}
-                data-product-images={JSON.stringify(product.images)}
-            >
-                <i class="fa-solid fa-cart-plus mr-2"></i>
-                Beli Sekarang
+              {/* Menggunakan ternary operator jika Anda ingin badge ini hanya tampil jika product.isNew true */}
+              <span class="absolute top-3 left-3 z-10 rounded-full bg-lime-500 px-3 py-1 text-xs font-semibold text-white opacity-90 shadow-lg">
+                BARU
+              </span>
             </button>
-        </div>
+
+            <div class="p-5">
+              <h3 class="truncate text-base font-semibold text-gray-900 md:text-xl">
+                {product.name}
+              </h3>
+
+              <p class="mt-1 mb-2 text-xs font-medium tracking-wide text-gray-500">
+                {product.category}
+              </p>
+
+              <span class="mb-4 block text-lg font-extrabold text-lime-600 md:text-2xl">
+                {formatRupiah(product.price)}
+              </span>
+
+              <div class="flex flex-col items-center justify-between md:mt-2 md:flex-row">
+                <button
+                  class="open-product-modal focus:ring-opacity-50 w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition duration-200 ease-in-out hover:bg-lime-600 focus:ring-2 focus:ring-lime-500 focus:outline-none active:bg-lime-700"
+                  data-product-id={product.id}
+                  data-product-name={product.name}
+                  data-product-price={product.price}
+                  data-product-images={JSON.stringify(product.images)}
+                >
+                  <i class="fa-solid fa-cart-plus mr-2" />
+                  Beli Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
     </div>
-</div>
-    ))}
-</div>
-<div class="mt-12 text-center">
-        <a
-  
-          href="/produk"
-          class={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lime-600 ${footerButtonHoverClass} transition duration-150`}
-        >
-          Tampilkan Semua Produk
-        </a>
-      </div>
-    </main>
+    <div class="mt-12 text-center">
+      <a
+        href="/produk"
+        class={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lime-600 ${footerButtonHoverClass} transition duration-150`}
+      >
+        Tampilkan Semua Produk
+      </a>
+    </div>
+  </main>
 
-    <section id="keunggulan" class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold 
-text-gray-900 mb-12 text-center">
-          Mengapa Memilih AetherSub?
-</h2>
-        <div
-          class="grid grid-cols-2 gap-8 text-center md:grid-cols-4 md:gap-12"
-        >
-          <div class="p-4 flex flex-col items-center">
-            <i class="fa-solid fa-certificate text-5xl text-lime-600 mb-4"></i>
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">
-              100% Kualitas Premium
-      
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Jersey dijamin menggunakan bahan dan detail terbaik.
-</p>
-          </div>
-          <div class="p-4 flex flex-col items-center">
-            <i class="fa-solid fa-paintbrush text-5xl text-lime-600 mb-4"></i>
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">
-              Kustom Nama Gratis
-            </h3>
-            <p class="text-gray-600 text-sm">
- 
-              Sablon nama dan nomor punggung tanpa biaya tambahan.
-</p>
-          </div>
-          <div class="p-4 flex flex-col items-center">
-            <i class="fa-solid fa-truck-fast text-5xl text-lime-600 mb-4"></i>
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">
-              Pengiriman Cepat
-            </h3>
-            <p class="text-gray-600 text-sm">
-  
-              Proses dan kirim pesanan Anda dengan mitra terpercaya.
-</p>
-          </div>
-          <div class="p-4 flex flex-col items-center">
-            <i class="fa-solid fa-headset text-5xl text-lime-600 mb-4"></i>
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">
-              Dukungan 24/7
-            </h3>
-            <p class="text-gray-600 text-sm">
-  
-              Tim kami siap membantu setiap pertanyaan dan kendala Anda.
-</p>
-          </div>
+  <section id="keunggulan" class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 data-aos="fade-up" class="mb-12 text-center text-3xl font-bold text-gray-900">
+        Mengapa Memilih AetherSub?
+      </h2>
+      <div class="grid grid-cols-2 gap-8 text-center md:grid-cols-4 md:gap-12">
+        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+          <i class="fa-solid fa-certificate mb-4 text-5xl text-lime-600"></i>
+          <h3 class="mb-1 text-lg font-semibold text-gray-900">100% Kualitas Premium</h3>
+          <p class="text-sm text-gray-600">Jersey dijamin menggunakan bahan dan detail terbaik.</p>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+          <i class="fa-solid fa-paintbrush mb-4 text-5xl text-lime-600"></i>
+          <h3 class="mb-1 text-lg font-semibold text-gray-900">Kustom Nama Gratis</h3>
+          <p class="text-sm text-gray-600">Sablon nama dan nomor punggung tanpa biaya tambahan.</p>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+          <i class="fa-solid fa-truck-fast mb-4 text-5xl text-lime-600"></i>
+          <h3 class="mb-1 text-lg font-semibold text-gray-900">Pengiriman Cepat</h3>
+          <p class="text-sm text-gray-600">
+            Proses dan kirim pesanan Anda dengan mitra terpercaya.
+          </p>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+          <i class="fa-solid fa-headset mb-4 text-5xl text-lime-600"></i>
+          <h3 class="mb-1 text-lg font-semibold text-gray-900">Dukungan 24/7</h3>
+          <p class="text-sm text-gray-600">
+            Tim kami siap membantu setiap pertanyaan dan kendala Anda.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="testimonial" class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
-          Kata Mereka Tentang AetherSub
-        </h2>
+  <section id="testimonial" class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 data-aos="fade-up" class="mb-12 text-center text-3xl font-bold text-gray-900">
+        Kata Mereka Tentang AetherSub
+      </h2>
+      <div
+        id="testimonial-carousel"
+        class="flex gap-x-6 overflow-x-auto px-4 sm:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible"
+      >
         <div
-          id="testimonial-carousel"
-  
-          class="flex overflow-x-auto gap-x-6 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible px-4 sm:px-0"
+          data-aos="fade-up"
+          data-aos-delay="150"
+          class="testimonial-item flex snap-center flex-col items-center rounded-xl bg-white p-6 text-center shadow-lg md:w-full"
         >
-          <div
-            class="testimonial-item md:w-full bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center snap-center"
-          >
-            <img
-              class="w-20 h-20 rounded-full object-cover mb-4 ring-4 ring-red-500"
-  
-              src="https://picsum.photos/seed/cust1/80/80"
-              alt="Foto Profil Pelanggan 1"
-            />
-            <p class="text-gray-700 italic mb-4">
-              "Jersey sampai dengan cepat! Kualitas bahan dan sablonnya premium
-              banget, melebihi ekspektasi.
-Kustom namanya rapi."
-            </p>
-            <div class="mt-auto">
-              <p class="font-semibold text-gray-900">- Bima S.</p>
-              <div class="flex justify-center text-yellow-500 text-sm mt-1">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid 
-fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
+          <img
+            class="mb-4 h-20 w-20 rounded-full object-cover ring-4 ring-red-500"
+            src="https://picsum.photos/seed/cust1/80/80"
+            alt="Foto Profil Pelanggan 1"
+          />
+          <p class="mb-4 text-gray-700 italic">
+            "Jersey sampai dengan cepat! Kualitas bahan dan sablonnya premium banget, melebihi
+            ekspektasi. Kustom namanya rapi."
+          </p>
+          <div class="mt-auto">
+            <p class="font-semibold text-gray-900">- Bima S.</p>
+            <div class="mt-1 flex justify-center text-sm text-yellow-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
           </div>
-          
-          <div
-            class="testimonial-item md:w-full bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center snap-center"
-          >
-            <img
-              class="w-20 h-20 rounded-full object-cover mb-4 ring-4 ring-red-500"
-              src="https://picsum.photos/seed/cust2/80/80"
-              alt="Foto Profil Pelanggan 2"
-     
-            />
-            <p class="text-gray-700 italic mb-4">
-              "Admin sangat responsif saat saya tanya tentang size chart.
-Barangnya cocok, pas di badan. Terima kasih AetherSub!"
-            </p>
-            <div class="mt-auto">
-              <p class="font-semibold text-gray-900">- Risa L.</p>
-              <div class="flex justify-center text-yellow-500 text-sm mt-1">
-                <i class="fa-solid fa-star"></i>
-             
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-              </div>
+        </div>
+
+        <div
+          data-aos="fade-up"
+          data-aos-delay="150"
+          class="testimonial-item flex snap-center flex-col items-center rounded-xl bg-white p-6 text-center shadow-lg md:w-full"
+        >
+          <img
+            class="mb-4 h-20 w-20 rounded-full object-cover ring-4 ring-red-500"
+            src="https://picsum.photos/seed/cust2/80/80"
+            alt="Foto Profil Pelanggan 2"
+          />
+          <p class="mb-4 text-gray-700 italic">
+            "Admin sangat responsif saat saya tanya tentang size chart. Barangnya cocok, pas di
+            badan. Terima kasih AetherSub!"
+          </p>
+          <div class="mt-auto">
+            <p class="font-semibold text-gray-900">- Risa L.</p>
+            <div class="mt-1 flex justify-center text-sm text-yellow-500">
+              <i class="fa-solid fa-star"></i>
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
             </div>
           </div>
-     
-          <div
-            class="testimonial-item md:w-full bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center snap-center"
-          >
-            <img
-              class="w-20 h-20 rounded-full object-cover mb-4 ring-4 ring-red-500"
-              src="https://picsum.photos/seed/cust3/80/80"
-              alt="Foto Profil Pelanggan 
+        </div>
+
+        <div
+          data-aos="fade-up"
+          data-aos-delay="150"
+          class="testimonial-item flex snap-center flex-col items-center rounded-xl bg-white p-6 text-center shadow-lg md:w-full"
+        >
+          <img
+            class="mb-4 h-20 w-20 rounded-full object-cover ring-4 ring-red-500"
+            src="https://picsum.photos/seed/cust3/80/80"
+            alt="Foto Profil Pelanggan 
 3"
-            />
-            <p class="text-gray-700 italic mb-4">
-              "Packagingnya rapi dan aman.
-Koleksi jersey retroyang dicari
-              akhirnya ketemu di sini.
-Puas banget!"
-            </p>
-            <div class="mt-auto">
-              <p class="font-semibold text-gray-900">- Anton P.</p>
-              <div class="flex justify-center text-yellow-500 text-sm mt-1">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
- 
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
+          />
+          <p class="mb-4 text-gray-700 italic">
+            "Packagingnya rapi dan aman. Koleksi jersey retroyang dicari akhirnya ketemu di sini.
+            Puas banget!"
+          </p>
+          <div class="mt-auto">
+            <p class="font-semibold text-gray-900">- Anton P.</p>
+            <div class="mt-1 flex justify-center text-sm text-yellow-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
           </div>
         </div>
-   
+      </div>
     </div>
-    </section>
+  </section>
 
-<section id="konsultasi" class="bg-lime-600 text-white py-16 px-4 sm:px-4 md:px-6 text-center">
-  <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-    Siap Buat Jersey Tim Anda?
-  </h2>
-  <p class="mb-6 text-lg">
-    Konsultasi gratis dengan tim desain kami sekarang
-  </p>
-  <a
-    href="https://wa.me/6285171140818"
-    class="bg-white text-lime-600 font-semibold px-8 py-3 rounded-lg shadow hover:shadow-lg transition"
+  <section
+    data-aos="fade-up"
+    id="konsultasi"
+    class="bg-lime-600 px-4 py-16 text-center text-white sm:px-4 md:px-6"
   >
-    Konsultasi Sekarang
-  </a>
-</section>
-
-
-    <div 
-    id="construction-modal" 
-    class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/80 backdrop-blur-sm transition-opacity duration-300"
-  
+    <h2 class="mb-4 text-3xl font-bold sm:text-4xl">Siap Buat Jersey Tim Anda?</h2>
+    <p class="mb-6 text-lg">Konsultasi gratis dengan tim desain kami sekarang</p>
+    <a
+      href="https://wa.me/6285171140818"
+      class="rounded-lg bg-white px-8 py-3 font-semibold text-lime-600 shadow transition hover:shadow-lg"
     >
-    <div class="bg-white p-8 md:p-10 rounded-xl shadow-2xl max-w-sm md:max-w-md w-full relative transform transition-all scale-100 opacity-100">
-        <button 
-            id="construction-close-btn" 
-            class="absolute top-3 right-3 text-gray-400 hover:text-gray-900 transition md:hidden"
-            aria-label="Tutup notifikasi"
+      Konsultasi Sekarang
+    </a>
+  </section>
+
+  <div
+    id="construction-modal"
+    class="fixed inset-0 z-[100] flex hidden items-center justify-center bg-gray-900/80 backdrop-blur-sm transition-opacity duration-300"
+  >
+    <div
+      class="relative w-full max-w-sm scale-100 transform rounded-xl bg-white p-8 opacity-100 shadow-2xl transition-all md:max-w-md md:p-10"
+    >
+      <button
+        id="construction-close-btn"
+        class="absolute top-3 right-3 text-gray-400 transition hover:text-gray-900 md:hidden"
+        aria-label="Tutup notifikasi"
+      >
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
+
+      <div class="text-center">
+        <div
+          class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100"
         >
-            <i class="fa-solid fa-xmark fa-xl"></i>
-     
-        </button>
-
-        <div class="text-center">
-            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-4">
-                <i class="fa-solid fa-screwdriver-wrench text-yellow-600 text-2xl"></i>
-            </div>
-            
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Hai There....</h2>
-      
-            <h2 class="text-2xl font-bold text-lime-700 mb-2">This site under Construction :(</h2>
-            
-            <p class="text-gray-600 mb-6">
-                Mohon maaf, beberapa fitur di situs ini masih dalam tahap pengembangan dan perbaikan.
-</p>
-            
-            <p class="text-sm font-semibold text-lime-600 mb-4">
-                Notifikasi ini akan tertutup otomatis dalam beberapa detik.
-</p>
-
-            <button 
-                id="construction-close-btn-lg"
-                type="button" 
-                class="w-full justify-center rounded-lg border border-transparent bg-lime-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none hidden md:inline-flex transition"
-            >
-          
-                Mengerti
-            </button>
+          <i class="fa-solid fa-screwdriver-wrench text-2xl text-yellow-600"></i>
         </div>
+
+        <h2 class="mb-2 text-2xl font-bold text-gray-900">Hai There....</h2>
+
+        <h2 class="mb-2 text-2xl font-bold text-lime-700">This site under Construction :(</h2>
+
+        <p class="mb-6 text-gray-600">
+          Mohon maaf, beberapa fitur di situs ini masih dalam tahap pengembangan dan perbaikan.
+        </p>
+
+        <p class="mb-4 text-sm font-semibold text-lime-600">
+          Notifikasi ini akan tertutup otomatis dalam beberapa detik.
+        </p>
+
+        <button
+          id="construction-close-btn-lg"
+          type="button"
+          class="hidden w-full justify-center rounded-lg border border-transparent bg-lime-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-red-700 focus:outline-none md:inline-flex"
+        >
+          Mengerti
+        </button>
+      </div>
     </div>
-</div>
+  </div>
 </BaseLayout>

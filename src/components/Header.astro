@@ -1,47 +1,45 @@
 ---
 // src/components/Header.astro (FINAL UTUH: Active State, Size Chart, Image Gallery, + Category Sidebar)
 
-const currentPath = Astro.url.pathname.trim(); 
-const isHomePage = currentPath === '/' || currentPath === '/index.html'; 
+const currentPath = Astro.url.pathname.trim();
+const isHomePage = currentPath === '/' || currentPath === '/index.html';
 
-// 1. Tentukan kelas background/shadow 
-const solidHeaderClasses = 'bg-white shadow-md'; 
+// 1. Tentukan kelas background/shadow
+const solidHeaderClasses = 'bg-white shadow-md';
 const transparentHeaderClasses = 'bg-transparent shadow-none';
 
 const headerClasses = isHomePage ? transparentHeaderClasses : solidHeaderClasses;
 
 // 2. Tentukan warna teks & logo: Default (Non-homepage) = Hitam, Homepage = Putih
-const initialTextColor = isHomePage ? 'text-white' : 'text-gray-900'; 
-const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/images/logo-web-dark.png';
+const initialTextColor = isHomePage ? 'text-white' : 'text-gray-900';
+const initialLogoSrc = isHomePage
+  ? '/asset/images/logo-web.png'
+  : '/asset/images/logo-web-dark.png';
 ---
+
 <header
   id="main-header"
-  data-is-home={isHomePage} 
+  data-is-home={isHomePage}
   class={`header-transition fixed top-0 left-0 right-0 z-50 ${headerClasses}`}
 >
-
   <div
     id="search-overlay"
-    class="hidden fixed inset-0 z-[100] flex justify-center items-start pt-24 bg-gray-500/70 backdrop-blur-sm transition-opacity duration-300 opacity-0"
+    class="fixed inset-0 z-[100] flex hidden items-start justify-center bg-gray-500/70 pt-24 opacity-0 backdrop-blur-sm transition-opacity duration-300"
   >
     <div class="w-full max-w-4xl px-4">
-      <div
-        class="flex items-center bg-white shadow-2xl rounded-full p-2 h-14"
-      >
-        <i
-          class="fa-solid fa-magnifying-glass text-gray-500 text-xl mx-3"
-        ></i>
+      <div class="flex h-14 items-center rounded-full bg-white p-2 shadow-2xl">
+        <i class="fa-solid fa-magnifying-glass mx-3 text-xl text-gray-500"></i>
 
         <input
           id="mobile-search-input"
           type="search"
           placeholder="Cari Layanan atau Topik Bantuan (Contoh: Transkripsi, Closed Captioning)"
-          class="w-full h-full border-0 focus:ring-0 text-gray-800 text-lg placeholder-gray-400 bg-transparent pr-4"
+          class="h-full w-full border-0 bg-transparent pr-4 text-lg text-gray-800 placeholder-gray-400 focus:ring-0"
         />
 
         <button
           id="close-search"
-          class="p-2 ml-2 text-gray-500 hover:text-lime-600 transition duration-150"
+          class="ml-2 p-2 text-gray-500 transition duration-150 hover:text-lime-600"
           aria-label="Tutup Pencarian"
         >
           <i class="fa-solid fa-xmark text-2xl"></i>
@@ -50,21 +48,21 @@ const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/image
     </div>
   </div>
 
-  <div class=" mx-auto px-4 md:px-20 lg:px-40">
-    <div class="flex justify-between items-center h-16">
+  <div class="mx-auto px-4 md:px-20 lg:px-40">
+    <div class="flex h-16 items-center justify-between">
       <div class="flex items-center space-x-8">
         <div class="flex-shrink-0">
           <a href="/" class="logo-transition flex items-center">
             <img
               src={initialLogoSrc}
               alt="Aethersub Logo Premium"
-              class="h-10 md:h-12 w-auto"
-              id="header-logo" 
+              class="h-10 w-auto md:h-12"
+              id="header-logo"
             />
           </a>
         </div>
 
-        <nav class="hidden md:flex space-x-6 items-center" id="desktop-nav">
+        <nav class="hidden items-center space-x-6 md:flex" id="desktop-nav">
           <a
             href="/produk"
             class={`nav-link text-sm font-medium ${initialTextColor} nav-link-animated transition duration-150`}
@@ -79,35 +77,28 @@ const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/image
       </div>
 
       <div class="flex items-center space-x-2 md:space-x-4">
-         
         <div id="desktop-search-group" class="flex items-center">
           <input
-              id="desktop-search-input"
-              type="search"
-              placeholder="Cari Produk atau Bantuan..."
-              class={`hidden md:block transition-all duration-300 ease-in-out h-8 
+            id="desktop-search-input"
+            type="search"
+            placeholder="Cari Produk atau Bantuan..."
+            class={`hidden md:block transition-all duration-300 ease-in-out h-8 
                      border border-gray-400 rounded-full px-4
                      bg-transparent ${initialTextColor} ${initialTextColor.replace('text-', 'placeholder-')} focus:outline-none focus:border-red-500 text-sm 
-                     w-0 opacity-0`} 
+                     w-0 opacity-0`}
           />
 
           <button
             class={`py-2 px-0 ${initialTextColor} hover:text-lime-600 transition duration-150`}
             id="open-search"
-            data-search-state="closed" 
+            data-search-state="closed"
           >
-           <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor" 
-            >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
-               stroke-linecap="round"
+                stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </button>
         </div>
@@ -118,23 +109,17 @@ const initialLogoSrc = isHomePage ? '/asset/images/logo-web.png' : '/asset/image
           id="cart-icon-container"
           onclick="window.location.href='/cart'"
         >
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 4a2 2 0 11-4 0 2 2 0 014 0z"
-            />
+            ></path>
           </svg>
           <span
             id="cart-count"
-            class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 
-bg-red-600 rounded-full"
+            class="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs leading-none font-bold text-red-100"
             >0</span
           >
         </button>
@@ -144,18 +129,12 @@ bg-red-600 rounded-full"
           id="mobile-menu-icon"
           onclick="openMobileMenu()"
         >
-          <svg
-           class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -166,189 +145,139 @@ bg-red-600 rounded-full"
 {/* ======================= 2. PRODUCT DETAIL MODAL ======================= */}
 <div
   id="product-detail-modal"
-  class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4"
+  class="fixed inset-0 z-[110] flex hidden items-center justify-center p-4"
   aria-modal="true"
   role="dialog"
 >
+  <div class="absolute inset-0 bg-gray-900/80" id="product-detail-backdrop"></div>
   <div
-    class="absolute inset-0 bg-gray-900/80"
-    id="product-detail-backdrop"
-  ></div>
-  <div
-    class="bg-white rounded-xl shadow-2xl z-10 w-full max-w-4xl max-h-[95vh] overflow-y-auto transform transition-all duration-300"
+    class="z-10 max-h-[95vh] w-full max-w-4xl transform overflow-y-auto rounded-xl bg-white shadow-2xl transition-all duration-300"
   >
-    <div
-      class="sticky top-0 bg-white p-6 border-b flex justify-between items-center z-20"
-    >
-      <h3
-        id="modal-product-name-header"
-        class="text-xl font-bold text-gray-900 truncate"
-      >
+    <div class="sticky top-0 z-20 flex items-center justify-between border-b bg-white p-6">
+      <h3 id="modal-product-name-header" class="truncate text-xl font-bold text-gray-900">
         Pilih Opsi Produk
       </h3>
       <button
         id="product-detail-close-button"
-        class="text-gray-500 hover:text-lime-600 transition duration-150 p-1"
+        class="p-1 text-gray-500 transition duration-150 hover:text-lime-600"
       >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
-           stroke-linecap="round"
+            stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
 
-    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
       <div>
-       
         <div
           id="modal-product-image-main"
-          class="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden mb-4 bg-cover bg-center shadow-md border-2 border-gray-100 transition-all duration-300" 
-          style="background-image: url('/asset/images/item-placeholder-1.jpg');" 
-        ></div>
-
-    
-        <div
-          id="modal-image-thumbnails"
-          class="flex gap-2 overflow-x-auto pb-2"
+          class="mb-4 aspect-square w-full overflow-hidden rounded-lg border-2 border-gray-100 bg-gray-200 bg-cover bg-center shadow-md transition-all duration-300"
+          style="background-image: url('/asset/images/item-placeholder-1.jpg');"
         >
-        
-          <img 
-            src="/asset/images/item-placeholder-1-thumb.jpg" 
-            data-full-image="/asset/images/item-placeholder-1.jpg" 
+        </div>
+
+        <div id="modal-image-thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+          <img
+            src="/asset/images/item-placeholder-1-thumb.jpg"
+            data-full-image="/asset/images/item-placeholder-1.jpg"
             onclick="changeMainImage(this)"
-            class="h-16 w-16 object-cover rounded-md cursor-pointer border-2 border-red-600 opacity-100 transition duration-200 thumbnail-item"
+            class="thumbnail-item h-16 w-16 cursor-pointer rounded-md border-2 border-red-600 object-cover opacity-100 transition duration-200"
             alt="Detail Produk 1"
           />
-          <img 
-            src="/asset/images/item-placeholder-2-thumb.jpg" 
-            data-full-image="/asset/images/item-placeholder-2.jpg" 
+          <img
+            src="/asset/images/item-placeholder-2-thumb.jpg"
+            data-full-image="/asset/images/item-placeholder-2.jpg"
             onclick="changeMainImage(this)"
-            class="h-16 w-16 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-red-600 transition duration-200 opacity-70 thumbnail-item"
+            class="thumbnail-item h-16 w-16 cursor-pointer rounded-md border-2 border-transparent object-cover opacity-70 transition duration-200 hover:border-red-600"
             alt="Detail Produk 2"
           />
-          <img 
-            src="/asset/images/item-placeholder-3-thumb.jpg" 
-            data-full-image="/asset/images/item-placeholder-3.jpg" 
+          <img
+            src="/asset/images/item-placeholder-3-thumb.jpg"
+            data-full-image="/asset/images/item-placeholder-3.jpg"
             onclick="changeMainImage(this)"
-            class="h-16 w-16 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-red-600 transition duration-200 opacity-70 thumbnail-item"
+            class="thumbnail-item h-16 w-16 cursor-pointer rounded-md border-2 border-transparent object-cover opacity-70 transition duration-200 hover:border-red-600"
             alt="Detail Produk 3"
           />
         </div>
 
-        <h4
-          id="modal-product-name"
-          class="text-2xl font-extrabold text-gray-900 mt-4"
-        ></h4>
-        <p
-          id="modal-product-price"
-          class="text-3xl font-bold text-lime-600 mt-1 mb-4"
-        ></p>
+        <h4 id="modal-product-name" class="mt-4 text-2xl font-extrabold text-gray-900"></h4>
+        <p id="modal-product-price" class="mt-1 mb-4 text-3xl font-bold text-lime-600"></p>
         <p class="text-sm text-gray-600">
-          Jersey kualitas premium dengan garansi kustom nama dan nomor gratis. Bahan Dri-FIT teknologi terbaru.
+          Jersey kualitas premium dengan garansi kustom nama dan nomor gratis. Bahan Dri-FIT
+          teknologi terbaru.
         </p>
       </div>
 
       <div class="space-y-6">
         <div class="border-b pb-4">
-        
-          <label class="block text-lg font-semibold text-gray-800 mb-2 flex justify-between items-center"
+          <label
+            class="mb-2 block flex items-center justify-between text-lg font-semibold text-gray-800"
             >Pilih Ukuran <span class="text-lime-600">*</span>
-            <button 
-                id="toggle-size-chart" 
-                onclick="toggleSizeChart()" 
-                class="text-sm font-medium text-lime-600 hover:text-red-800 transition duration-150"
+            <button
+              id="toggle-size-chart"
+              onclick="toggleSizeChart()"
+              class="text-sm font-medium text-lime-600 transition duration-150 hover:text-red-800"
             >
-                <i class="fa-solid fa-chart-bar mr-1"></i> Lihat Size Chart
+              <i class="fa-solid fa-chart-bar mr-1"></i> Lihat Size Chart
             </button>
           </label>
-        
+
           <div class="flex flex-wrap gap-2">
-            <input
-             type="radio"
-              id="sizeS"
-              name="size"
-              value="S"
-              class="hidden"
-              required
-            /><label
-             for="sizeS"
-              class="px-3 py-1 border rounded-full text-sm cursor-pointer hover:bg-red-50 hover:border-red-500"
+            <input type="radio" id="sizeS" name="size" value="S" class="hidden" required /><label
+              for="sizeS"
+              class="cursor-pointer rounded-full border px-3 py-1 text-sm hover:border-red-500 hover:bg-red-50"
             >
               S</label
             >
-            <input
-              type="radio"
-              id="sizeM"
-              name="size"
-              value="M"
-              class="hidden"
-            /><label
+            <input type="radio" id="sizeM" name="size" value="M" class="hidden" /><label
               for="sizeM"
-              class="px-3 py-1 border rounded-full text-sm cursor-pointer hover:bg-red-50 hover:border-red-500"
+              class="cursor-pointer rounded-full border px-3 py-1 text-sm hover:border-red-500 hover:bg-red-50"
             >
               M</label
             >
-            <input
-              type="radio"
-              id="sizeL"
-              name="size"
-              value="L"
-             class="hidden"
-              checked
-            /><label
+            <input type="radio" id="sizeL" name="size" value="L" class="hidden" checked /><label
               for="sizeL"
-              class="px-3 py-1 border rounded-full text-sm cursor-pointer hover:bg-red-50 hover:border-red-500"
+              class="cursor-pointer rounded-full border px-3 py-1 text-sm hover:border-red-500 hover:bg-red-50"
             >
               L</label
             >
-            <input
-              type="radio"
-              id="sizeXL"
-              name="size"
-              value="XL"
-              class="hidden"
-            /><label
+            <input type="radio" id="sizeXL" name="size" value="XL" class="hidden" /><label
               for="sizeXL"
-              class="px-3 py-1 border rounded-full text-sm cursor-pointer hover:bg-red-50 hover:border-red-500"
+              class="cursor-pointer rounded-full border px-3 py-1 text-sm hover:border-red-500 hover:bg-red-50"
             >
               XL</label
             >
           </div>
         </div>
-        
-  
-        <div id="size-chart-content" class="hidden border rounded-lg p-3 bg-gray-50 transition-all duration-300">
-            <h5 class="text-base font-bold text-gray-900 mb-2">Size Chart (Lebar Dada x Panjang)</h5>
-            <table class="w-full text-sm text-gray-700">
-                <thead>
-                    <tr class="text-left font-semibold text-gray-600 border-b">
-                        <th class="py-1">Ukuran</th>
-                        <th class="py-1">Lebar (cm)</th>
-                        <th class="py-1">Panjang (cm)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td class="py-1">S</td><td class="py-1">48</td><td class="py-1">68</td></tr>
-                    <tr><td class="py-1">M</td><td class="py-1">50</td><td class="py-1">70</td></tr>
-                    <tr><td class="py-1">L</td><td class="py-1">52</td><td class="py-1">72</td></tr>
-                    <tr><td class="py-1">XL</td><td class="py-1">54</td><td class="py-1">74</td></tr>
-                </tbody>
-            </table>
+
+        <div
+          id="size-chart-content"
+          class="hidden rounded-lg border bg-gray-50 p-3 transition-all duration-300"
+        >
+          <h5 class="mb-2 text-base font-bold text-gray-900">Size Chart (Lebar Dada x Panjang)</h5>
+          <table class="w-full text-sm text-gray-700">
+            <thead>
+              <tr class="border-b text-left font-semibold text-gray-600">
+                <th class="py-1">Ukuran</th>
+                <th class="py-1">Lebar (cm)</th>
+                <th class="py-1">Panjang (cm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="py-1">S</td><td class="py-1">48</td><td class="py-1">68</td></tr>
+              <tr><td class="py-1">M</td><td class="py-1">50</td><td class="py-1">70</td></tr>
+              <tr><td class="py-1">L</td><td class="py-1">52</td><td class="py-1">72</td></tr>
+              <tr><td class="py-1">XL</td><td class="py-1">54</td><td class="py-1">74</td></tr>
+            </tbody>
+          </table>
         </div>
 
-
-      
-          <div class="border-b pb-4">
-          <label class="block text-lg font-semibold text-gray-800 mb-2"
+        <div class="border-b pb-4">
+          <label class="mb-2 block text-lg font-semibold text-gray-800"
             >Kustomisasi Nama & Nomor (Gratis)</label
           >
           <input
@@ -356,49 +285,42 @@ bg-red-600 rounded-full"
             type="text"
             placeholder="Nama Punggung (Maks 10 karakter)"
             maxlength="10"
-            class="w-full border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm mb-2"
+            class="mb-2 w-full rounded-lg border-gray-300 text-sm focus:border-red-500 focus:ring-red-500"
           />
           <input
             id="custom-number"
             type="number"
             placeholder="Nomor Punggung (Maks 2 digit)"
             max="99"
-            class="w-full border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"
+            class="w-full rounded-lg border-gray-300 text-sm focus:border-red-500 focus:ring-red-500"
           />
         </div>
 
         <div>
-          <label class="block text-lg font-semibold text-gray-800 mb-2"
-            >Kuantitas</label
-          >
+          <label class="mb-2 block text-lg font-semibold text-gray-800">Kuantitas</label>
           <input
             id="quantity-input"
             type="number"
             value="1"
             min="1"
-            class="w-24 border-gray-300 rounded-lg text-center focus:ring-red-500 focus:border-red-500"
+            class="w-24 rounded-lg border-gray-300 text-center focus:border-red-500 focus:ring-red-500"
           />
         </div>
       </div>
     </div>
 
-    <div class="p-6 border-t bg-gray-50 flex justify-end">
+    <div class="flex justify-end border-t bg-gray-50 p-6">
       <button
         id="add-to-cart-button"
-        class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition duration-150 flex items-center"
+        class="flex items-center rounded-lg bg-red-600 px-6 py-3 font-semibold text-white transition duration-150 hover:bg-red-700"
       >
-        <svg
-          class="w-5 h-5 mr-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
-           stroke-linecap="round"
+            stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 4a2 2 0 11-4 0 2 2 0 014 0z"
-          />
+          ></path>
         </svg>
         Tambahkan ke Keranjang
       </button>
@@ -407,106 +329,157 @@ bg-red-600 rounded-full"
 </div>
 
 {/* ======================= 3. MOBILE MENU SIDEBAR ======================= */}
-<div 
-    id="mobile-menu-overlay" 
-    class="fixed inset-0 bg-gray-900/50 z-40 hidden opacity-0 transition-opacity duration-300"
-    onclick="closeMobileMenu()"
-></div>
-
 <div
-    id="mobile-menu-sidebar"
-    class="fixed top-4 right-0 w-64 h-full  bg-white z-50 transform rounded-2xl translate-x-full transition-transform duration-300 shadow-2xl p-6" 
+  id="mobile-menu-overlay"
+  class="fixed inset-0 z-40 hidden bg-gray-900/50 opacity-0 transition-opacity duration-300"
+  onclick="closeMobileMenu()"
 >
-    <div class="flex justify-between items-center mb-8 border-b pb-4">
-        <span class="text-xl font-extrabold text-lime-600">MENU</span>
-        <button onclick="closeMobileMenu()" class="text-gray-500 hover:text-lime-600 p-2 rounded-full transition duration-150" aria-label="Tutup Menu">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-    </div>
-    
-    <nav class="space-y-1">
-        
-        <a 
-            href="/produk" 
-            class={`block text-base font-semibold px-4 py-3 rounded-lg transition duration-150 ${
-                currentPath.startsWith('/produk') // <-- KONDISI DIPERBAIKI
-                    ? 'bg-lime-600 text-white hover:bg-lime-700'
-                    : 'text-gray-800 hover:text-white hover:bg-lime-600'
-            }`} 
-            onclick="closeMobileMenu()"
-        >
-            <i class="fa-solid fa-shirt w-5 mr-3"></i> PRODUCT
-        </a>
-        
-        <a 
-            href="/about" 
-            class={`block text-base font-semibold px-4 py-3 rounded-lg transition duration-150 ${
-                currentPath.startsWith('/about')
-                    ? 'bg-lime-600 text-white hover:bg-lime-700'
-                    : 'text-gray-800 hover:text-white hover:bg-lime-600'
-            }`}
-            onclick="closeMobileMenu()"
-        >
-            <i class="fa-solid fa-circle-info w-5 mr-3"></i> ABOUT
-        </a>
-        
-        <div class="pt-4 mt-4 border-t"></div>
-
-        <a 
-            href="#faq-modal" 
-            onclick="openFAQModal(); closeMobileMenu();"
-            class="block text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition duration-150"
-        >
-            <i class="fa-solid fa-circle-question w-5 mr-3"></i> FAQ & Bantuan
-        </a>
-        <a 
-            href="/login" 
-            class="block text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition duration-150"
-            onclick="closeMobileMenu()"
-        >
-            <i class="fa-solid fa-right-to-bracket w-5 mr-3"></i> Akun Saya
-        </a>
-    </nav>
 </div>
 
+<div
+  id="mobile-menu-sidebar"
+  class="fixed top-4 right-0 z-50 h-full w-64 translate-x-full transform rounded-2xl bg-white p-6 shadow-2xl transition-transform duration-300"
+>
+  <div class="mb-8 flex items-center justify-between border-b pb-4">
+    <span class="text-xl font-extrabold text-lime-600">MENU</span>
+    <button
+      onclick="closeMobileMenu()"
+      class="rounded-full p-2 text-gray-500 transition duration-150 hover:text-lime-600"
+      aria-label="Tutup Menu"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="space-y-1">
+    <!-- MAIN MENU -->
+    <a
+      href="/produk"
+      class={`block text-base font-semibold px-4 py-3 rounded-lg transition duration-150 ${
+        currentPath.startsWith('/produk')
+          ? 'bg-lime-600 text-white hover:bg-lime-700'
+          : 'text-gray-800 hover:text-white hover:bg-lime-600'
+      }`}
+      onclick="closeMobileMenu()"
+    >
+      <i class="fa-solid fa-shirt mr-3 w-5"></i> PRODUCT
+    </a>
+
+    <a
+      href="/about"
+      class={`block text-base font-semibold px-4 py-3 rounded-lg transition duration-150 ${
+        currentPath.startsWith('/about')
+          ? 'bg-lime-600 text-white hover:bg-lime-700'
+          : 'text-gray-800 hover:text-white hover:bg-lime-600'
+      }`}
+      onclick="closeMobileMenu()"
+    >
+      <i class="fa-solid fa-circle-info mr-3 w-5"></i> ABOUT
+    </a>
+
+    <div class="mt-4 border-t pt-4"></div>
+
+    <!-- SUPPORT / HELPER LINKS -->
+    <a
+      href="/faq"
+      class="block px-4 py-2 text-sm font-medium text-gray-700 transition duration-150 hover:text-lime-600"
+    >
+      <i class="fa-solid fa-circle-question mr-3 w-5"></i> FAQ & Bantuan
+    </a>
+
+    <a
+      href="/contact"
+      onclick="closeMobileMenu()"
+      class="block px-4 py-2 text-sm font-medium text-gray-700 transition duration-150 hover:text-lime-600"
+    >
+      <i class="fa-solid fa-headset mr-3 w-5"></i> Kontak & Support
+    </a>
+
+    <a
+      href="/privacy"
+      onclick="closeMobileMenu()"
+      class="block px-4 py-2 text-sm font-medium text-gray-700 transition duration-150 hover:text-lime-600"
+    >
+      <i class="fa-solid fa-shield-halved mr-3 w-5"></i> Privacy Policy
+    </a>
+
+    <a
+      href="/syarat-ketentuan"
+      onclick="closeMobileMenu()"
+      class="block px-4 py-2 text-sm font-medium text-gray-700 transition duration-150 hover:text-lime-600"
+    >
+      <i class="fa-solid fa-scale-balanced mr-3 w-5"></i> Terms & Conditions
+    </a>
+
+    <div class="mt-4 border-t pt-4"></div>
+
+    <!-- OPTIONAL VERSION INFO (bisa dihapus kalau tidak perlu) -->
+    <p class="mt-6 px-4 text-xs text-gray-400">v1.0.0 • Last Update: Jan 2025</p>
+  </nav>
+</div>
 
 {/* ======================= 4. CATEGORY SIDEBAR (TAMBAHAN FIX) ======================= */}
-<div 
-    id="category-sidebar-overlay" 
-    class="fixed inset-0 bg-gray-900/50 z-40 hidden opacity-0 transition-opacity duration-300"
-    onclick="closeCategorySidebar()"
-></div>
+<div
+  id="category-sidebar-overlay"
+  class="fixed inset-0 z-40 hidden bg-gray-900/50 opacity-0 transition-opacity duration-300"
+  onclick="closeCategorySidebar()"
+>
+</div>
 
 <div
-    id="category-sidebar"
-    class="fixed top-0 left-0 w-64 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl p-6" 
+  id="category-sidebar"
+  class="fixed top-0 left-0 z-50 h-full w-64 -translate-x-full transform bg-white p-6 shadow-2xl transition-transform duration-300"
 >
-    <div class="flex justify-between items-center mb-8 border-b pb-4">
-        <span class="text-xl font-extrabold text-lime-600">KATEGORI</span>
-        <button id="category-close-button" class="text-gray-500 hover:text-lime-600 p-2 rounded-full transition duration-150" aria-label="Tutup Sidebar Kategori">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-    </div>
-    
-    <nav class="space-y-1">
-        {/* Konten Kategori akan diisi di Produk.astro atau secara dinamis */}
-        <a href="/produk" class="block text-base font-semibold px-4 py-3 rounded-lg text-gray-800 hover:text-white hover:bg-lime-600 transition duration-150">
-            Semua Produk
-        </a>
-        <a href="/produk?cat=timnas" class="block text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition duration-150">
-            Jersey Timnas
-        </a>
-        <a href="/produk?cat=Training" class="block text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition duration-150">
-            Training
-        </a>
-        <a href="/produk?cat=retro" class="block text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition duration-150">
-            Jersey Retro
-        </a>
-    </nav>
+  <div class="mb-8 flex items-center justify-between border-b pb-4">
+    <span class="text-xl font-extrabold text-lime-600">KATEGORI</span>
+    <button
+      id="category-close-button"
+      class="rounded-full p-2 text-gray-500 transition duration-150 hover:text-lime-600"
+      aria-label="Tutup Sidebar Kategori"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="space-y-1">
+    {/* Konten Kategori akan diisi di Produk.astro atau secara dinamis */}
+    <a
+      href="/produk"
+      class="block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 transition duration-150 hover:bg-lime-600 hover:text-white"
+    >
+      Semua Produk
+    </a>
+    <a
+      href="/produk?cat=timnas"
+      class="block px-4 py-2 text-sm font-medium text-gray-600 transition duration-150 hover:text-gray-900"
+    >
+      Jersey Timnas
+    </a>
+    <a
+      href="/produk?cat=Training"
+      class="block px-4 py-2 text-sm font-medium text-gray-600 transition duration-150 hover:text-gray-900"
+    >
+      Training
+    </a>
+    <a
+      href="/produk?cat=retro"
+      class="block px-4 py-2 text-sm font-medium text-gray-600 transition duration-150 hover:text-gray-900"
+    >
+      Jersey Retro
+    </a>
+  </nav>
 </div>
 
 <script type="module" src="/scripts/header-logic.js" is:inline></script>

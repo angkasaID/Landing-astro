@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!allowShow) return;
 
     const OPEN_DELAY = 5000;
-    const AUTO_CLOSE = 10000;
+    const AUTO_CLOSE = 5000;
 
     setTimeout(() => {
       sessionStorage.setItem(SESSION_KEY, "true");

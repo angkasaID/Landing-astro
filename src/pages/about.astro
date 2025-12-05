@@ -1,32 +1,33 @@
 ---
-// src/pages/about.astro
 import Layout from '../layouts/BaseLayout.astro'; 
 
-const title = "Tentang Kami - Kisah JersyKita";
+const title = "Tentang Kami | AetherSub";
 ---
-
 <Layout title={title}>
     <main class="bg-gray-50 min-h-screen pt-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-            <header class="text-center mb-16">
-                <h1 class="text-5xl font-extrabold text-gray-900 mb-4">
-                    Kisah di Balik JersyKita
+            <!-- HEADER -->
+            <header class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-lg font-extrabold text-gray-900 mb-4">
+                   We Are <span class="font-judul2 italic text-2xl text-lime-600">AetherSub</span>
                 </h1>
-                <p class="text-xl text-red-600 font-medium">
+                <p class="text-lg text-gray font-medium">
                     Lebih dari Sekadar Pakaian Olahraga, Ini adalah Semangat Kami.
                 </p>
             </header>
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-10">
+
+                <!-- BAGIAN TEKS -->
+                <div class="space-y-10" data-aos="fade-right">
                     
                     <div>
                         <h2 class="text-3xl font-bold text-gray-900 mb-4 flex items-center">
                             <i class="fa-solid fa-eye text-lime-600 mr-3"></i> Visi Kami
                         </h2>
                         <blockquote class="border-l-4 border-red-500 pl-4 text-gray-700 italic">
-                            "Menjadi penyedia *jersey* olahraga nomor satu di Indonesia yang dikenal karena kualitas, desain orisinal, dan dedikasi pada kepuasan pelanggan."
+                            "Menjadi produsen jersey olahraga yang dikenal karena kualitas, desain orisinal, dan dedikasi pada kepuasan pelanggan."
                         </blockquote>
                     </div>
                     
@@ -43,38 +44,55 @@ const title = "Tentang Kami - Kisah JersyKita";
                     </div>
                 </div>
 
-   <div class="rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-300">
-    <img 
-        src="/asset/images/port1.png" 
-        alt="Tim JersyKita sedang merancang jersey berkualitas tinggi"
-        class="w-full h-96 object-cover object-top" 
-        loading="lazy"
-    />
-</div>
+                <!-- GAMBAR -->
+                <div 
+                    class="rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-300"
+                    data-aos="fade-left"
+                >
+                    <img 
+                        src="/asset/images/port1.png" 
+                        alt="Tim AetherSub sedang merancang jersey berkualitas tinggi"
+                        class="w-full h-96 object-cover object-top" 
+                        loading="lazy"
+                    />
+                </div>
             </div>
 
             <hr class="my-16 border-gray-300" />
 
+            <!-- SECTION NILAI-NILAI -->
             <section class="text-center">
-                <h2 class="text-4xl font-extrabold text-gray-900 mb-10">Nilai-Nilai Inti yang Kami Junjung</h2>
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-10" data-aos="fade-up">
+                    Nilai-Nilai Inti yang Kami Junjung
+                </h2>
+
                 <div class="grid md:grid-cols-3 gap-8">
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+
+                    <div 
+                        class="p-6 rounded-2xl shadow-2xl backdrop-blur-lg border border-opacity-30 border-white bg-white/10"
+                        data-aos="zoom-in" data-aos-delay="0"
+                    >
                         <i class="fa-solid fa-medal text-4xl text-lime-600 mb-3"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Kualitas Premium</h3>
                         <p class="text-gray-600">Kami percaya setiap detail menentukan performa. Kami hanya menggunakan bahan terbaik yang tahan lama dan nyaman di segala kondisi.</p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <div 
+                        class="p-6 rounded-2xl shadow-2xl backdrop-blur-lg border border-opacity-30 border-white bg-white/10"
+                        data-aos="zoom-in" data-aos-delay="150"
+                    >
                         <i class="fa-solid fa-lightbulb text-4xl text-lime-600 mb-3"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Orisinalitas Desain</h3>
-                        <p class="text-gray-600">Tim kreatif kami berdedikasi menciptakan desain yang unik, mencerminkan identitas tim Anda, bukan sekadar meniru yang sudah ada.</p>
+                        <p class="text-gray-700 leading-relaxed drop-shadow-lg">Tim kreatif kami berdedikasi menciptakan desain yang unik, mencerminkan identitas tim Anda, bukan sekadar meniru yang sudah ada.</p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
-                        <i class="fa-solid fa-handshake-angle text-4xl text-lime-600 mb-3"></i>
+                    <div 
+                        class="p-6 rounded-2xl shadow-2xl backdrop-blur-lg border border-opacity-30 border-white bg-white/10"
+                        data-aos="zoom-in" data-aos-delay="300"
+                    >
+                        <i class="fa-solid fa-handshake-angle text-4xl text-lime-600 mb-4 drop-shadow-xl"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Semangat Komunitas</h3>
-                        <p class="text-gray-600">Kami hadir untuk mendukung mimpi setiap tim, dari yang kecil hingga besar. Kepuasan dan semangat Anda adalah prioritas kami.</p>
+                        <p class="text-gray-700 leading-relaxed drop-shadow-lg">Kami hadir untuk mendukung mimpi setiap tim, dari yang kecil hingga besar. Kepuasan dan semangat Anda adalah prioritas kami.</p>
                     </div>
 
                 </div>

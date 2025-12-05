@@ -11,7 +11,14 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.11",
     "@tailwindcss/vite": "^4.1.17",
+    "aos": "^2.3.4",
     "astro": "^5.16.0",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
   }
 }
