@@ -132,3 +132,56 @@ input[type='radio']:checked + label {
   transform: translateY(0) !important;
   pointer-events: auto !important;
 }
+/* Delay utilities */
+.delay-150 {
+  animation-delay: 0.15s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Aurora */
+.aurora-bg {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(240, 240, 255, 0.7), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(230, 245, 255, 0.9), transparent 70%);
+  filter: blur(60px);
+  animation: auroraMove 10s ease-in-out infinite alternate;
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  inset: -50%;
+  z-index: 1;
+}
+
+@keyframes auroraMove {
+  0% {
+    transform: translate(-10%, -10%) scale(1.1);
+  }
+  50% {
+    transform: translate(10%, -5%) scale(1.15);
+  }
+  100% {
+    transform: translate(-5%, 10%) scale(1.1);
+  }
+}
+
+header,
+#mobile-menu-sidebar,
+#desktop-nav,
+#desktop-search-input {
+  overflow-x: hidden;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+#preloader-logo {
+  width: 120px; /* bebas */
+  height: auto; /* JAGAIN ASPECT RATIO */
+  object-fit: contain; /* biar tidak gepeng */
+  display: block;
+  margin: 0 auto;
+}
