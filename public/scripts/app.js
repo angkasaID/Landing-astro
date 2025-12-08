@@ -1,14 +1,14 @@
 // public/scripts/app.js — CLEAN + STABLE + OPTIMIZED
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Constant Selectors
-  const parallaxImage = document.getElementById("parallax-image");
-  const carousel = document.getElementById("gallery-carousel");
-  const constructionModal = document.getElementById("construction-modal");
-  const closeBtnSm = document.getElementById("construction-close-btn");
-  const closeBtnLg = document.getElementById("construction-close-btn-lg");
+  const parallaxImage = document.getElementById('parallax-image');
+  const carousel = document.getElementById('gallery-carousel');
+  const constructionModal = document.getElementById('construction-modal');
+  const closeBtnSm = document.getElementById('construction-close-btn');
+  const closeBtnLg = document.getElementById('construction-close-btn-lg');
 
-  const SESSION_KEY = "constructionModalShown";
+  const SESSION_KEY = 'constructionModalShown';
 
   // ============================================================
   // 1. PARALLAX EFFECT (OPTIMIZED)
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setupCarousel = () => {
     if (!carousel) return;
 
-    const items = carousel.querySelectorAll(".carousel-item");
+    const items = carousel.querySelectorAll('.carousel-item');
     const REAL_SLIDES = 3;
     const SLIDE_TIME = 5000;
 
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Infinite Loop Logic
       if (currentIndex >= REAL_SLIDES) {
-        carousel.scrollTo({ left: target, behavior: "smooth" });
+        carousel.scrollTo({ left: target, behavior: 'smooth' });
 
         setTimeout(() => {
-          carousel.style.scrollBehavior = "auto";
+          carousel.style.scrollBehavior = 'auto';
           carousel.scrollLeft = 0;
           requestAnimationFrame(() => {
-            carousel.style.scrollBehavior = "smooth";
+            carousel.style.scrollBehavior = 'smooth';
           });
         }, 500);
 
@@ -57,31 +57,31 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      carousel.scrollTo({ left: target, behavior: "smooth" });
+      carousel.scrollTo({ left: target, behavior: 'smooth' });
     };
 
     // Manual scroll reset
-    carousel.addEventListener("scroll", () => {
+    carousel.addEventListener('scroll', () => {
       const width = slideWidth();
       const resetPoint = REAL_SLIDES * width;
 
       if (carousel.scrollLeft >= resetPoint) {
-        carousel.style.scrollBehavior = "auto";
+        carousel.style.scrollBehavior = 'auto';
         carousel.scrollLeft -= resetPoint;
         currentIndex = 0;
 
         requestAnimationFrame(() => {
-          carousel.style.scrollBehavior = "smooth";
+          carousel.style.scrollBehavior = 'smooth';
         });
       }
     });
 
     // Resize support
-    window.addEventListener("resize", () => {
-      carousel.style.scrollBehavior = "auto";
+    window.addEventListener('resize', () => {
+      carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = currentIndex * slideWidth();
       requestAnimationFrame(() => {
-        carousel.style.scrollBehavior = "smooth";
+        carousel.style.scrollBehavior = 'smooth';
       });
     });
 
@@ -93,38 +93,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================
   const closeModal = () => {
     if (!constructionModal) return;
-    constructionModal.classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
+    constructionModal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
   };
 
-  closeBtnSm?.addEventListener("click", closeModal);
-  closeBtnLg?.addEventListener("click", closeModal);
-
-  const initConstructionModal = () => {
-    if (!constructionModal) return;
-
-    const path = window.location.pathname;
-    const isHomepage = path === "/" || path === "/index.html";
-    const allowShow = isHomepage && !sessionStorage.getItem(SESSION_KEY);
-
-    if (!allowShow) return;
-
-    const OPEN_DELAY = 5000;
-    const AUTO_CLOSE = 5000;
-
-    setTimeout(() => {
-      sessionStorage.setItem(SESSION_KEY, "true");
-      constructionModal.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-
-      setTimeout(closeModal, AUTO_CLOSE);
-    }, OPEN_DELAY);
-  };
+  closeBtnSm?.addEventListener('click', closeModal);
+  closeBtnLg?.addEventListener('click', closeModal);
 
   // ============================================================
   // INITIALIZATION
   // ============================================================
-  window.addEventListener("scroll", handleParallaxScroll);
+  window.addEventListener('scroll', handleParallaxScroll);
   handleParallaxScroll();
 
   initConstructionModal();
