@@ -258,16 +258,15 @@ const updateCartCount = (count) => {
  * Logika inti untuk menambahkan produk ke keranjang (menggunakan localStorage).
  */
 const handleAddToCart = () => {
-  if (!currentProductId || !currentProductPrice) {
+  if (!currentProductId || !currentProductPrice || !currentProductName) {
     window.showToast('Gagal menambahkan produk. Data produk tidak lengkap.', 4000);
     return;
-  }
+  } // PASTIKAN GAMBAR ADA
 
-  // PASTIKAN GAMBAR ADA
   if (!currentProductImageUrl) {
     window.showToast('Gagal menambahkan produk. URL gambar tidak ditemukan.', 4000);
     return;
-  }
+  } // --- 1. AMBIL DATA DARI MODAL ---
 
   const selectedSizeElement = document.querySelector('input[name="size"]:checked');
   const size = selectedSizeElement ? selectedSizeElement.value : 'N/A';
@@ -281,25 +280,25 @@ const handleAddToCart = () => {
   } catch (e) {
     console.error('Error parsing cartItems from localStorage:', e);
     cartItems = [];
-  }
+  } // Konversi harga ke integer untuk perhitungan
 
-  // Konversi harga ke integer untuk perhitungan
-  const priceInt = parseInt(currentProductPrice, 10);
+  const priceInt = parseInt(currentProductPrice, 10); // --- 2. DEFINISI NEW ITEM (DIPERBAIKI UNTUK MENGAMBIL SEMUA DATA MODAL) ---
 
   const newItem = {
     id: Date.now(), // ID unik untuk setiap item di keranjang
     productId: currentProductId,
     name: currentProductName,
     price: priceInt,
-    size: size,
-    customName: customName,
-    customNumber: customNumber,
-    quantity: quantity,
-    imageUrl: currentProductImageUrl, // <<-- MODIFIKASI: Sertakan URL gambar
+    totalQuantity: 1,
+    size: size, // ✅ Data size dari modal
+    customName: customName, // ✅ Data kustom nama dari modal
+    customNumber: customNumber, // ✅ Data kustom nomor dari modal
+    quantity: quantity, // ✅ Data quantity dari modal
+    imageUrl: currentProductImageUrl,
   };
 
   cartItems.push(newItem);
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  localStorage.setItem('cartItems', JSON.stringify(cartItems)); // --- 3. PERHITUNGAN TOTAL COUNT (DIPERBAIKI UNTUK MENGGUNAKAN item.quantity) ---
 
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   localStorage.setItem('cartCount', totalCount);

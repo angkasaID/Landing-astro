@@ -216,7 +216,7 @@ const initialLogoSrc = isHomePage
         <div class="border-b pb-4">
           <label
             class="mb-2 block flex items-center justify-between text-lg font-semibold text-gray-800"
-            >Pilih Ukuran <span class="text-lime-600">*</span>
+            >Ukuran Tersedia
             <button
               id="toggle-size-chart"
               onclick="toggleSizeChart()"
@@ -268,7 +268,7 @@ const initialLogoSrc = isHomePage
 
         <div
           id="size-chart-content"
-          class="hidden rounded-lg border bg-gray-50 p-3 transition-all duration-300"
+          class="rounded-lg border bg-gray-50 p-3 transition-all duration-300"
         >
           <h5 class="mb-2 text-base font-bold text-gray-900">Size Chart (Lebar Dada x Panjang)</h5>
           <table class="w-full text-sm text-gray-700">
@@ -288,68 +288,6 @@ const initialLogoSrc = isHomePage
               <tr><td class="py-1">2XL</td><td class="py-1">56</td><td class="py-1">76</td></tr>
             </tbody>
           </table>
-        </div>
-
-        <div class="border-b pb-4">
-          <label class="mb-2 block text-lg font-semibold text-gray-800"
-            >Kustomisasi Nama & Nomor (Gratis)</label
-          >
-          <input
-            id="custom-name"
-            type="text"
-            placeholder="Nama Punggung (Maks 10 karakter)"
-            maxlength="10"
-            class="mb-2 w-full rounded-lg border-gray-300 text-sm focus:border-red-500 focus:ring-red-500"
-          />
-          <input
-            id="custom-number"
-            type="number"
-            placeholder="Nomor Punggung (Maks 2 digit)"
-            max="99"
-            class="w-full rounded-lg border-gray-300 text-sm focus:border-red-500 focus:ring-red-500"
-          />
-        </div>
-
-        <div class="pb-4">
-          <label for="quantity-input" class="mb-2 block text-lg font-semibold text-gray-800"
-            >Kuantitas</label
-          >
-          <div class="flex items-center space-x-2">
-            <button
-              type="button"
-              id="quantity-minus"
-              class="rounded-full bg-gray-200 p-2 text-gray-700 transition hover:bg-gray-300 disabled:opacity-50"
-              aria-label="Kurangi Kuantitas"
-            >
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"
-                ></path>
-              </svg>
-            </button>
-            <input
-              type="number"
-              id="quantity-input"
-              value="1"
-              min="1"
-              max="99"
-              class="w-16 rounded-lg border border-gray-300 p-2 text-center text-lg font-medium focus:border-red-500 focus:ring-red-500"
-              aria-live="polite"
-            />
-            <button
-              type="button"
-              id="quantity-plus"
-              class="rounded-full bg-gray-200 p-2 text-gray-700 transition hover:bg-gray-300"
-              aria-label="Tambah Kuantitas"
-            >
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 4v16m8-8H4"></path>
-              </svg>
-            </button>
-          </div>
         </div>
 
         <div
