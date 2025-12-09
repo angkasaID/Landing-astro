@@ -8,10 +8,10 @@ const products = [
     name: 'Atasan Pola & Kerah Standar',
     price: 110000,
     oldPrice: 150000,
-    isNew: true,
+    isNew: false,
     isSale: true,
     rating: 4.9,
-    category: 'Jersey',
+    category: 'Jersey Standar',
     imageSrc: '/asset/images/kerah-biasa.png',
     images: [
       {
@@ -33,7 +33,7 @@ const products = [
     isNew: false,
     isSale: true,
     rating: 4.7,
-    category: 'Jersey',
+    category: 'Jersey Setelan',
     imageSrc: '/asset/images/port2.png',
     images: [
       {
@@ -47,10 +47,10 @@ const products = [
     name: 'Vintage polo',
     price: 120000,
     oldPrice: 180000,
-    isNew: false,
+    isNew: true,
     isSale: false,
     rating: 4.8,
-    category: 'Vintage',
+    category: 'Jersey Vintage',
     imageSrc: '/asset/images/kerah-vintage.png',
     images: [
       {
@@ -71,7 +71,7 @@ const products = [
     isNew: false,
     isSale: false,
     rating: 4.5,
-    category: 'Polo',
+    category: 'Jersey Polo',
     imageSrc: '/asset/images/image-1.png',
     images: [
       {
@@ -240,7 +240,7 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
     </div>
   </section>
 
-  <main class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8" id="produk">
+  <main class="mx-auto max-w-7xl px-2 py-12 sm:px-6 lg:px-8" id="produk">
     <h2 class="mb-8 text-center text-3xl font-bold text-gray-900" data-aos="fade-up">
       Jersey Pilihan Kami
     </h2>
@@ -259,21 +259,24 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
               data-product-name={product.name}
               data-product-price={product.price}
               data-product-images={JSON.stringify(product.images)}
+              aria-label={`Lihat detail produk ${product.name}`}
             >
               <div
                 class="absolute inset-0 transition duration-500 group-hover:scale-110"
                 style={`
-                background-image: url('${product.imageSrc}');
-                background-size: cover;
-                background-position: center;
-             `}
+        background-image: url('${product.imageSrc}');
+        background-size: cover;
+        background-position: center;
+      `}
               />
 
               <div class="bg-opacity-10 absolute inset-0 bg-black opacity-0 transition duration-300" />
 
-              <span class="absolute top-3 left-3 z-10 rounded-full bg-lime-500 px-3 py-1 text-xs font-semibold text-white opacity-90 shadow-lg">
-                BARU
-              </span>
+              {product.isNew && (
+                <span class="absolute top-3 left-3 z-10 rounded-full bg-lime-500 px-3 py-1 text-xs font-semibold text-white opacity-90 shadow-lg">
+                  BARU
+                </span>
+              )}
             </button>
 
             <div class="p-5">
@@ -286,15 +289,23 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
               </p>
 
               <div class="mb-4">
-                <span class="block text-lg font-extrabold text-lime-600 md:text-2xl">
+                <span class="block text-base font-bold text-gray-900 md:text-xl">
                   {formatRupiah(product.price)}
                 </span>
 
+                <p class="mt-1 text-sm font-bold md:text-base">
+                  <span class="mr-1 text-gray-600 italic">Dapatkan Harga</span>
+                  <br />{' '}
+                  <span class="text-lg font-extrabold text-lime-600 md:text-2xl">
+                    {formatRupiah(product.price - 20000)}
+                  </span>
+                </p>
+
                 <p class="mt-1 text-xs font-bold text-gray-700 md:text-sm">
-                  <span class="mr-1 text-red-600">Hemat 20K/pcs</span>{' '}
-                  <span class="text-gray-500">(min. 10 pcs)</span>
+                  <span class="text-gray-500">(pesan min. 10 pcs)</span>
                 </p>
               </div>
+
               <div class="flex flex-col items-center justify-between md:mt-2 md:flex-row">
                 <button
                   class="open-product-modal focus:ring-opacity-50 w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition duration-200 ease-in-out hover:bg-lime-600 focus:ring-2 focus:ring-lime-500 focus:outline-none active:bg-lime-700"
@@ -304,7 +315,7 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
                   data-product-images={JSON.stringify(product.images)}
                 >
                   <i class="fa-solid fa-cart-plus mr-2" />
-                  Beli Sekarang
+                  Lihat Detail / Beli
                 </button>
               </div>
             </div>
