@@ -65,7 +65,7 @@ const products = [
   },
   {
     id: 104,
-    name: 'Jersey Polo standar Wangky',
+    name: 'Jersey Polo Wangky',
     price: 120000,
     oldPrice: null,
     isNew: false,
@@ -145,57 +145,54 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
     </div>
   </div>
 
-  <section
-    id="full-screen-carousel"
-    class="relative aspect-video w-full overflow-hidden bg-white md:h-[56.25vw] md:max-h-screen"
-  >
+  <section id="full-screen-carousel" class="relative w-full overflow-hidden bg-white">
     <div
       id="gallery-carousel"
       class="mt-1 flex h-full w-full snap-x snap-mandatory snap-always overflow-x-auto"
       style="scroll-behavior: smooth;"
     >
       <div
-        class="carousel-item justify-cente relative flex h-full w-screen flex-shrink-0 items-center"
+        class="carousel-item relative flex w-full flex-shrink-0 items-center justify-center"
         data-slide-index="1"
       >
-        <div
-          class="bg-center-top absolute inset-0 bg-cover"
-          style="background-image: url('/asset/images/slide1.png')"
-        >
-        </div>
+        <img
+          src="/asset/images/slide1.png"
+          alt="Slide Carousel 1"
+          class="h-auto w-full object-contain object-center"
+        />
       </div>
 
       <div
-        class="carousel-item relative flex h-full w-screen flex-shrink-0 items-center justify-center"
+        class="carousel-item relative flex w-full flex-shrink-0 items-center justify-center"
         data-slide-index="2"
       >
-        <div
-          class="bg-center-top absolute inset-0 bg-cover"
-          style="background-image: url('/asset/images/slide2.png')"
-        >
-        </div>
+        <img
+          src="/asset/images/slide2.png"
+          alt="Slide Carousel 2"
+          class="h-auto w-full object-contain object-center"
+        />
       </div>
 
       <div
-        class="carousel-item relative flex h-full w-screen flex-shrink-0 items-center justify-center"
+        class="carousel-item relative flex w-full flex-shrink-0 items-center justify-center"
         data-slide-index="3"
       >
-        <div
-          class="bg-center-top absolute inset-0 bg-cover"
-          style="background-image: url('/asset/images/slide3.png')"
-        >
-        </div>
+        <img
+          src="/asset/images/slide3.png"
+          alt="Slide Carousel 3"
+          class="h-auto w-full object-contain object-center"
+        />
       </div>
 
       <div
-        class="carousel-item justify-cente relative flex h-full w-screen flex-shrink-0 items-center"
+        class="carousel-item relative flex w-full flex-shrink-0 items-center justify-center"
         data-slide-index="1-copy"
       >
-        <div
-          class="bg-center-top absolute inset-0 bg-cover"
-          style="background-image: url('/asset/images/slide1.png')"
-        >
-        </div>
+        <img
+          src="/asset/images/slide1.png"
+          alt="Slide Carousel 1 Copy"
+          class="h-auto w-full object-contain object-center"
+        />
       </div>
     </div>
   </section>
@@ -214,8 +211,10 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
         <div
           class="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-gray-900/50 p-4 sm:p-6"
         >
-          <h2 class="font-judul2 text-center text-xl text-white sm:text-3xl md:text-5xl">
-            KUALITAS TERBAIK<br />
+          <h2
+            class="font-judul2 text-center text-base leading-snug font-semibold text-white sm:text-3xl md:text-5xl"
+          >
+            KUALITAS TERBAIK
           </h2>
         </div>
       </div>
@@ -232,7 +231,7 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
           class="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-gray-900/50 p-4 sm:p-6"
         >
           <h3
-            class="font-judul2 text-center text-xl leading-snug font-semibold text-white sm:text-3xl md:text-5xl"
+            class="font-judul2 text-center text-base leading-snug font-semibold text-white sm:text-3xl md:text-5xl"
           >
             BEBAS CUSTOM
           </h3>
@@ -264,15 +263,14 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
               <div
                 class="absolute inset-0 transition duration-500 group-hover:scale-110"
                 style={`
-                 background-image: url('${product.imageSrc}');
-                 background-size: cover;
-                 background-position: center;
+                background-image: url('${product.imageSrc}');
+                background-size: cover;
+                background-position: center;
              `}
               />
 
               <div class="bg-opacity-10 absolute inset-0 bg-black opacity-0 transition duration-300" />
 
-              {/* Menggunakan ternary operator jika Anda ingin badge ini hanya tampil jika product.isNew true */}
               <span class="absolute top-3 left-3 z-10 rounded-full bg-lime-500 px-3 py-1 text-xs font-semibold text-white opacity-90 shadow-lg">
                 BARU
               </span>
@@ -287,10 +285,16 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
                 {product.category}
               </p>
 
-              <span class="mb-4 block text-lg font-extrabold text-lime-600 md:text-2xl">
-                {formatRupiah(product.price)}
-              </span>
+              <div class="mb-4">
+                <span class="block text-lg font-extrabold text-lime-600 md:text-2xl">
+                  {formatRupiah(product.price)}
+                </span>
 
+                <p class="mt-1 text-xs font-bold text-gray-700 md:text-sm">
+                  <span class="mr-1 text-red-600">Hemat 20K/pcs</span>{' '}
+                  <span class="text-gray-500">(min. 10 pcs)</span>
+                </p>
+              </div>
               <div class="flex flex-col items-center justify-between md:mt-2 md:flex-row">
                 <button
                   class="open-product-modal focus:ring-opacity-50 w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-lg transition duration-200 ease-in-out hover:bg-lime-600 focus:ring-2 focus:ring-lime-500 focus:outline-none active:bg-lime-700"
@@ -323,25 +327,45 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
       <h2 data-aos="fade-up" class="mb-12 text-center text-3xl font-bold text-gray-900">
         Mengapa Memilih AetherSub?
       </h2>
-      <div class="grid grid-cols-2 gap-8 text-center md:grid-cols-4 md:gap-12">
-        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-12">
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="100"
+          class="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition duration-300 hover:border-lime-300 hover:shadow-xl"
+        >
           <i class="fa-solid fa-certificate mb-4 text-5xl text-lime-600"></i>
           <h3 class="mb-1 text-lg font-semibold text-gray-900">100% Kualitas Premium</h3>
           <p class="text-sm text-gray-600">Jersey dijamin menggunakan bahan dan detail terbaik.</p>
         </div>
-        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="100"
+          class="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition duration-300 hover:border-lime-300 hover:shadow-xl"
+        >
           <i class="fa-solid fa-paintbrush mb-4 text-5xl text-lime-600"></i>
           <h3 class="mb-1 text-lg font-semibold text-gray-900">Kustom Nama Gratis</h3>
           <p class="text-sm text-gray-600">Sablon nama dan nomor punggung tanpa biaya tambahan.</p>
         </div>
-        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="100"
+          class="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition duration-300 hover:border-lime-300 hover:shadow-xl"
+        >
           <i class="fa-solid fa-truck-fast mb-4 text-5xl text-lime-600"></i>
           <h3 class="mb-1 text-lg font-semibold text-gray-900">Pengiriman Cepat</h3>
           <p class="text-sm text-gray-600">
             Proses dan kirim pesanan Anda dengan mitra terpercaya.
           </p>
         </div>
-        <div data-aos="zoom-in" data-aos-delay="100" class="flex flex-col items-center p-4">
+
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="100"
+          class="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition duration-300 hover:border-lime-300 hover:shadow-xl"
+        >
           <i class="fa-solid fa-headset mb-4 text-5xl text-lime-600"></i>
           <h3 class="mb-1 text-lg font-semibold text-gray-900">Dukungan 24/7</h3>
           <p class="text-sm text-gray-600">
@@ -451,12 +475,13 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
   >
     <h2 class="mb-4 text-3xl font-bold sm:text-4xl">Siap Buat Jersey Tim Anda?</h2>
     <p class="mb-6 text-lg">Konsultasi gratis dengan tim desain kami sekarang</p>
+
     <a
       target="_blank"
       href="https://wa.me/6285171140818"
-      class="rounded-lg bg-white px-8 py-3 font-semibold text-lime-600 shadow transition hover:shadow-lg"
+      class="mx-auto flex max-w-xs items-center justify-center rounded-lg bg-white px-10 py-4 font-semibold text-lime-600 shadow transition hover:bg-gray-100 hover:shadow-xl"
     >
-      Konsultasi Sekarang
+      <i class="fa-brands fa-whatsapp fa-lg mr-2"></i> Konsultasi Sekarang
     </a>
   </section>
 </BaseLayout>
