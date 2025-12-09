@@ -115,21 +115,33 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
   </section>
   <div class="absolute right-0 bottom-5 left-0 z-30 flex justify-center">
     <div
+      id="floating-info-card"
       data-aos="zoom-in"
       data-aos-delay="150"
-      class="w-[90%] max-w-lg rounded-3xl border border-white/20 bg-white/10 px-8 py-5 shadow-2xl backdrop-blur-xl"
+      class="relative w-[90%] max-w-lg rounded-xl border border-white/20 bg-white/10 px-6 py-4 shadow-2xl backdrop-blur-xl transition-all duration-300 ease-in-out"
     >
-      <p class="mb-4 text-center text-sm text-white/80">
-        ✨ Baru! Dapatkan inspirasi desain terbaru langsung dari studio kami.
+      <p class="mb-3 text-left text-sm text-white/80">
+        <span class="text-base">✨ Baru!</span><br /> Dapatkan inspirasi desain terbaru langsung dari
+        studio kami.
       </p>
 
-      <a
-        href="https://desain.aethersub.store"
-        target="_blank"
-        class="block w-full rounded-xl bg-lime-500 py-3 text-center font-bold text-gray-900 transition duration-300 hover:scale-105 hover:bg-lime-400"
-      >
-        Lihat Koleksi
-      </a>
+      <div class="flex gap-3 pt-2">
+        <a
+          href="https://desain.aethersub.store"
+          target="_blank"
+          class="block flex-grow rounded-xl bg-lime-500 py-3 text-center text-sm font-bold text-gray-900 transition duration-300 hover:scale-[1.02] hover:bg-lime-400"
+        >
+          Lihat Koleksi
+        </a>
+
+        <button
+          id="close-floating-card"
+          class="w-1/3 flex-shrink-0 rounded-xl border border-white/50 bg-transparent py-3 text-center text-sm font-semibold text-white/80 transition duration-300 hover:bg-white/20 hover:text-white"
+          aria-label="Tutup notifikasi"
+        >
+          Tutup
+        </button>
+      </div>
     </div>
   </div>
 
@@ -440,55 +452,11 @@ const footerButtonHoverClass = 'hover:bg-lime-700';
     <h2 class="mb-4 text-3xl font-bold sm:text-4xl">Siap Buat Jersey Tim Anda?</h2>
     <p class="mb-6 text-lg">Konsultasi gratis dengan tim desain kami sekarang</p>
     <a
+      target="_blank"
       href="https://wa.me/6285171140818"
       class="rounded-lg bg-white px-8 py-3 font-semibold text-lime-600 shadow transition hover:shadow-lg"
     >
       Konsultasi Sekarang
     </a>
   </section>
-
-  <div
-    id="construction-modal"
-    class="fixed inset-0 z-[100] flex hidden items-center justify-center bg-gray-900/80 backdrop-blur-sm transition-opacity duration-300"
-  >
-    <div
-      class="relative w-full max-w-sm scale-100 transform rounded-xl bg-white p-8 opacity-100 shadow-2xl transition-all md:max-w-md md:p-10"
-    >
-      <button
-        id="construction-close-btn"
-        class="absolute top-3 right-3 text-gray-400 transition hover:text-gray-900 md:hidden"
-        aria-label="Tutup notifikasi"
-      >
-        <i class="fa-solid fa-xmark fa-xl"></i>
-      </button>
-
-      <div class="text-center">
-        <div
-          class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100"
-        >
-          <i class="fa-solid fa-screwdriver-wrench text-2xl text-yellow-600"></i>
-        </div>
-
-        <h2 class="mb-2 text-2xl font-bold text-gray-900">Hai There....</h2>
-
-        <h2 class="mb-2 text-2xl font-bold text-lime-700">This site under Construction :(</h2>
-
-        <p class="mb-6 text-gray-600">
-          Mohon maaf, beberapa fitur di situs ini masih dalam tahap pengembangan dan perbaikan.
-        </p>
-
-        <p class="mb-4 text-sm font-semibold text-lime-600">
-          Notifikasi ini akan tertutup otomatis dalam beberapa detik.
-        </p>
-
-        <button
-          id="construction-close-btn-lg"
-          type="button"
-          class="hidden w-full justify-center rounded-lg border border-transparent bg-lime-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-red-700 focus:outline-none md:inline-flex"
-        >
-          Mengerti
-        </button>
-      </div>
-    </div>
-  </div>
 </BaseLayout>

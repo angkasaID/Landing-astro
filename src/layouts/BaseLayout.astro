@@ -102,25 +102,12 @@ const currentYear = new Date().getFullYear();
   </head>
   <div
     id="preloader"
-    class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
+    class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-gray-900"
   >
-    <!-- Aurora background -->
-    <div class="aurora-bg absolute inset-0"></div>
-
-    <!-- Logo -->
-    <img
-      id="preloader-logo"
-      src="/asset/images/logo-web-dark.png"
-      class="relative z-10 h-24 w-24 animate-pulse"
-      alt="Loading..."
-    />
-
-    <!-- Bouncing dots -->
-    <div class="relative z-10 mt-6 flex gap-2">
-      <div class="h-3 w-3 animate-bounce rounded-full bg-lime-600"></div>
-      <div class="h-3 w-3 animate-bounce rounded-full bg-lime-600 delay-150"></div>
-      <div class="h-3 w-3 animate-bounce rounded-full bg-lime-600 delay-300"></div>
+    <div class="spinner">
+      <div class="spinner1 bg-gray-900"></div>
     </div>
+    <p class="font-judul2 px-1 py-5 text-gray-500">Angkasa Project</p>
   </div>
 
   <body class="font-base bg-gray-100">
@@ -137,7 +124,7 @@ const currentYear = new Date().getFullYear();
                 id="footer-logo"
                 src="/asset/images/logo-web.png"
                 alt="Logo AetherSub"
-                class="h-15"
+                class="h-12"
               />
             </div>
             <p class="mb-4 text-sm text-gray-400">Vendor Jersey Pilihan terbaik</p>
@@ -148,7 +135,7 @@ const currentYear = new Date().getFullYear();
               </p>
               <p class="flex items-center text-gray-400">
                 <i class="fa-solid fa-envelope mr-2 h-4 w-4 text-red-600"></i>
-                Helpdesk@aethersub.store
+                helpdesk@aethersub.store
               </p>
             </div>
           </div>
@@ -263,9 +250,9 @@ const currentYear = new Date().getFullYear();
         const preloader = document.getElementById('preloader');
         if (!preloader) return;
 
-        preloader.classList.add('opacity-0', 'pointer-events-none', 'transition', 'duration-700');
+        preloader.classList.add('opacity-0', 'pointer-events-none', 'transition', 'duration-1000');
 
-        setTimeout(() => preloader.remove(), 700);
+        setTimeout(() => preloader.remove(), 1000);
       });
     </script>
   </body>

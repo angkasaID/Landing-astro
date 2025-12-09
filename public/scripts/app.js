@@ -1,14 +1,23 @@
 // public/scripts/app.js — CLEAN + STABLE + OPTIMIZED
 
 document.addEventListener('DOMContentLoaded', () => {
+  const card = document.getElementById('floating-info-card');
+  const closeButton = document.getElementById('close-floating-card');
+
+  if (card && closeButton) {
+    closeButton.addEventListener('click', () => {
+      card.removeAttribute('data-aos');
+      card.removeAttribute('data-aos-delay');
+      card.classList.remove('aos-animate');
+      card.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => {
+        card.classList.add('hidden');
+      }, 300);
+    });
+  }
   // Constant Selectors
   const parallaxImage = document.getElementById('parallax-image');
   const carousel = document.getElementById('gallery-carousel');
-  const constructionModal = document.getElementById('construction-modal');
-  const closeBtnSm = document.getElementById('construction-close-btn');
-  const closeBtnLg = document.getElementById('construction-close-btn-lg');
-
-  const SESSION_KEY = 'constructionModalShown';
 
   // ============================================================
   // 1. PARALLAX EFFECT (OPTIMIZED)
@@ -89,23 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ============================================================
-  // 3. UNDER CONSTRUCTION MODAL (SAFE + NON-BLOCKING)
-  // ============================================================
-  const closeModal = () => {
-    if (!constructionModal) return;
-    constructionModal.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
-  };
-
-  closeBtnSm?.addEventListener('click', closeModal);
-  closeBtnLg?.addEventListener('click', closeModal);
-
-  // ============================================================
   // INITIALIZATION
   // ============================================================
   window.addEventListener('scroll', handleParallaxScroll);
   handleParallaxScroll();
-
-  initConstructionModal();
   setupCarousel();
 });
